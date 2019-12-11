@@ -346,6 +346,55 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/11/QT%20day1.1/" >
+            
+                <span>QT day1.1</span>
+        </a>
+        <div class="abstract-content">
+            先建立一个没有ui界面的QWidget工程
+1. 在.pro文件中
+模块
+
+QT       += core gui
+
+高于4版本，添加QT+=widgets，为了兼容Qt4
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+应用程序的名字
+
+TARGET = GSL_Firstapp
+
+指定makefile的类型：app
+
+TEMPLATE = app
+
+源文件 .cpp文件
+
+SOURCES += main.cpp       mywidget.cpp
+
+头文件 .h文件
+
+HEADERS  += mywidget.h
+
+2. 在.h...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/11</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/12/10/MarkDown/" >
             
                 <span>Markdown</span>
@@ -495,9 +544,16 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 1
+        Total : 2
         </div>
         <!-- search  -->
         
@@ -514,6 +570,20 @@
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/10</span><a class="archive-post-title" href= "/2019/12/10/MarkDown/" >Markdown</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/11/QT%20day1.1/" >QT day1.1</a>
         </li>
     
     </div>
