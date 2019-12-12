@@ -346,12 +346,63 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/12/QT_day1.2/" >
+            
+                <span>QT day1.2</span>
+        </a>
+        <div class="abstract-content">
+            #学习目的：简单完全手写一个QT项目
+先建立一个空项目
+
+New Project-&gt;其他项目-&gt;Empty qmake Project
+
+1. 在.pro文件中
+添加    模块
+
+QT += widgets
+
+添加源文件
+
+SOURCES +=     main.cpp
+
+2. 在.cpp文件中
+添加应用程序类
+
+#include  &lt; QApplication &gt;
+
+因为需要窗口，所以添加窗口控件基类
+
+#include &lt; QWidget &gt;
+
+因为需要添加按钮，所以添加按钮类
+
+#include &lt; QPushButton &gt;
+
+正...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/12</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/12/11/QT%20day1.1/" >
             
                 <span>QT day1.1</span>
         </a>
         <div class="abstract-content">
-            先建立一个没有ui界面的QWidget工程
+            #学习目的：新建一个QT项目，并了解各文件中的信息
+先建立一个没有ui界面的QWidget工程
 1. 在.pro文件中
 模块
 
@@ -375,9 +426,7 @@ SOURCES += main.cpp       mywidget.cpp
 
 头文件 .h文件
 
-HEADERS  += mywidget.h
-
-2. 在.h...
+HEAD...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -551,9 +600,16 @@ HEADERS  += mywidget.h
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -584,6 +640,20 @@ HEADERS  += mywidget.h
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/11/QT%20day1.1/" >QT day1.1</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2019/12/12/QT_day1.2/" >QT day1.2</a>
         </li>
     
     </div>

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>QT day1.1 · GSL&#39;s Blog</title>
+    <title>QT day1.2 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >GSL&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">QT day1.1</a>
+                <a href="#" class="post-name">QT day1.2</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            QT day1.1
+            QT day1.2
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">260</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">323</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/11</span>
+                    <span class="post-intro-time">2019/12/12</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,61 +395,38 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#学习目的：新建一个QT项目，并了解各文件中的信息</p>
-<p>先建立一个没有ui界面的QWidget工程</p>
+        <p>#学习目的：简单完全手写一个QT项目</p>
+<p>先建立一个空项目</p>
+<blockquote>
+<p>New Project-&gt;其他项目-&gt;Empty qmake Project</p>
+</blockquote>
 <p><font  size="4"><strong>1. 在.pro文件中</strong></font></p>
-<p>模块</p>
+<p>添加    模块</p>
 <blockquote>
-<p>QT       += core gui</p>
+<p>QT += widgets</p>
 </blockquote>
-<p>高于4版本，添加QT+=widgets，为了兼容Qt4</p>
+<p>添加源文件</p>
 <blockquote>
-<p>greaterThan(QT_MAJOR_VERSION, 4): QT += widgets</p>
+<p>SOURCES +=<br>     main.cpp</p>
 </blockquote>
-<p>应用程序的名字</p>
+<p><font  size="4"><strong>2. 在.cpp文件中</strong></font></p>
+<p>添加应用程序类</p>
 <blockquote>
-<p>TARGET = GSL_Firstapp</p>
+<p>#include  &lt; QApplication &gt;</p>
 </blockquote>
-<p>指定makefile的类型：app</p>
+<p>因为需要窗口，所以添加窗口控件基类</p>
 <blockquote>
-<p>TEMPLATE = app</p>
+<p>#include &lt; QWidget &gt;</p>
 </blockquote>
-<p>源文件 .cpp文件</p>
+<p>因为需要添加按钮，所以添加按钮类</p>
 <blockquote>
-<p>SOURCES += main.cpp<br>       mywidget.cpp</p>
+<p>#include &lt; QPushButton &gt;</p>
 </blockquote>
-<p>头文件 .h文件</p>
+<p>正文：</p>
 <blockquote>
-<p>HEADERS  += mywidget.h</p>
+<p>int main(int argc, char *<em>argv)<br>{<br>&emsp;QApplication app(argc,argv);<br>&emsp;QWidget w;<br>&emsp; w.setWindowTitle(QString(“主要看气质”));//设置标题<br>&emsp;/</em>如果不指定父对象，对象和对象（窗口和窗&gt;口）没有关系，独立的<br>     *a指定b为它的父对象，a放在b的上面<br>     * 制定父对象，有两种方法<br>     *      1）setParent<br>     *      2）通过构造函数传参<br>     * 指定父对象，只需要父对象显示，上面的子对象自动显示<br>     */<br>&emsp;QPushButton b;<br>&emsp;  b.setText(“@~@”);//给按钮设定内容<br>&emsp;    b.setParent(&amp;w);//指定父对象<br>&emsp;b.move(100,100);//移动按钮<br>&emsp;QPushButton b1(&amp;w);//通过构造函数传参<br>&emsp;b.setText(“abc”);<br>&emsp;w.show();<br>&emsp; app.exec();<br>&emsp;return 0;<br>}</p>
 </blockquote>
-<p><font  size="4"><strong>2. 在.h文件中</strong></font></p>
-<p>凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT</p>
-<blockquote>
-<p>Q_OBJECT</p>
-</blockquote>
-<p><font  size="4"><strong>3. 在.cpp文件中</strong></font></p>
-<ul>
-<li>QApplication是应用程序类</li>
-<li>Qt头文件没有.h</li>
-<li>头文件和类名一样</li>
-<li>前两个都是大写</li>
-</ul>
-<p>有且只有一个应用程序类的对象</p>
-<blockquote>
-<p>QApplication a(argc, argv);</p>
-</blockquote>
-<p>MyWidget继承于QWidget，QWidget是一个窗口基类，所以MyWidget也是窗口类。w就是一个窗口</p>
-<blockquote>
-<p>MyWidget w;</p>
-</blockquote>
-<p>窗口默认是隐藏的，需要人为显示</p>
-<blockquote>
-<p>w.show();</p>
-</blockquote>
-<p> 让程序一直执行下去,等待用户操作和等待事件发生</p>
-<blockquote>
-<p>a.exec(); </p>
-</blockquote>
+<p>**我们最好从开始就养成良好习惯，在 Qt 中，尽量在构<br>造的时候就指定 parent 对象，并且大胆在堆上创建</p>
 
     </article>
     <!-- license  -->
@@ -458,17 +435,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/12/12/QT_day1.2/" title= "QT day1.2">
-                    <div class="nextTitle">QT day1.2</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/12/10/MarkDown/" title= "Markdown">
-                    <div class="prevTitle">Markdown</div>
+                <a href= "/2019/12/11/QT%20day1.1/" title= "QT day1.1">
+                    <div class="prevTitle">QT day1.1</div>
                 </a>
             
         </li>
