@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>QT day1.1 · GSL&#39;s Blog</title>
+    <title>QT day1.3 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >GSL&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">QT day1.1</a>
+                <a href="#" class="post-name">QT day1.3</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            QT day1.1
+            QT day1.3
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">260</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">666</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/11</span>
+                    <span class="post-intro-time">2019/12/14</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,60 +395,68 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#学习目的：新建一个QT项目，并了解各文件中的信息</p>
-<p>先建立一个没有ui界面的QWidget工程</p>
+        <p>#学习目的：信号与槽</p>
+<p>先建立一个不创建界面的QWidget项目,类名为mainwidget</p>
+<blockquote>
+<p>再建一个窗口方法：直接右键点击工程名-&gt;添加新文件-&gt;C++ Class(名字为subwidget)</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>只有继承了 QObject类的类，才具有信号槽的能力.凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT</p>
+</blockquote>
 <p><font  size="4"><strong>1. 在.pro文件中</strong></font></p>
-<p>模块</p>
+<p>CONFIG 用来告诉 qmake 关于应用程序的配置信息。这里目的是：使用 c++11 的特性。<br>在这里使用“+=”，是因为我们添加我们的配置选项到任何一个已经存在中。这样做比使用“=”那样替换已经指定的所有选项更安全。</p>
 <blockquote>
-<p>QT       += core gui</p>
+<p>CONFIG +=C++11</p>
 </blockquote>
-<p>高于4版本，添加QT+=widgets，为了兼容Qt4</p>
+<p><font  size="4"><strong>2. 在.cpp文件中</strong></font></p>
+<p>如何改默认编码为UTF-8</p>
 <blockquote>
-<p>greaterThan(QT_MAJOR_VERSION, 4): QT += widgets</p>
+<p>工具-&gt;选项-&gt;文本编辑器-&gt;行为:改默认编码为UTF-8</p>
 </blockquote>
-<p>应用程序的名字</p>
+<p>首先看main.cpp</p>
 <blockquote>
-<p>TARGET = GSL_Firstapp</p>
+<p>MainWidget w;</p>
+<blockquote>
+<p>执行到这一句时候,接下来不是执行w.show，而是执行MainWidget的构造函数</p>
 </blockquote>
-<p>指定makefile的类型：app</p>
-<blockquote>
-<p>TEMPLATE = app</p>
 </blockquote>
-<p>源文件 .cpp文件</p>
+<hr>
+<p>再看mainwidget.cpp</p>
 <blockquote>
-<p>SOURCES += main.cpp<br>       mywidget.cpp</p>
+<p>connect()函数最常用的一般形式：<br>connect(&amp;sender, &amp;signal, &amp;receiver, &amp;slot);<br>◼ sender：发出信号的对象<br>◼ signal：发送对象发出的信号<br>◼ receiver：接收信号的对象<br>◼ slot：接收对象在接收到信号之后所需要调用的函数</p>
 </blockquote>
-<p>头文件 .h文件</p>
+<p>Qt4 的书写方式： </p>
 <blockquote>
-<p>HEADERS  += mywidget.h</p>
+<p>connect(&amp;sender,SINGAL(singal()),&amp;receiver,SLOT(slot()));</p>
 </blockquote>
-<p><font  size="4"><strong>2. 在.h文件中</strong></font></p>
-<p>凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT</p>
+<p>这里使用了 SIGNAL 和 SLOT 这两个宏，将两个函数名转换成了字符串。注意到 connect()函数的 signal 和 slot 都是接受字符串，一旦出现连接不成功的情况，Qt4 是没有编译错误的（因为一切都是字符串，编译期是不检查字符串是否匹配），而是在运行时给出错误。这无疑会增加程序的不稳定性。 </p>
 <blockquote>
-<p>Q_OBJECT</p>
+<p>Qt5 在语法上完全兼容 Qt4(最好不要用)</p>
 </blockquote>
-<p><font  size="4"><strong>3. 在.cpp文件中</strong></font></p>
-<ul>
-<li>QApplication是应用程序类</li>
-<li>Qt头文件没有.h</li>
-<li>头文件和类名一样</li>
-<li>前两个都是大写</li>
-</ul>
-<p>有且只有一个应用程序类的对象</p>
+<p>但是当函数重载时，可以使用QT4的写法</p>
 <blockquote>
-<p>QApplication a(argc, argv);</p>
+<p>connect(&amp;s,SIGNAL(mySignal()),this,SLOT(dealsub()));<br>connect(&amp;s,SIGNAL(mySignal(int,QString)),this,SLOT(dealSlot(int,QString)));</p>
 </blockquote>
-<p>MyWidget继承于QWidget，QWidget是一个窗口基类，所以MyWidget也是窗口类。w就是一个窗口</p>
+<p>不然就用函数指针</p>
 <blockquote>
-<p>MyWidget w;</p>
+<p>void (SubWidget::<em>funSignal)()=&amp;SubWidget::mySignal;<br>connect(&amp;s,funSignal,this,&amp;MainWidget::myslot);<br>void(SubWidget::</em>testSignal(int,QString)=&amp;SubWidget::mySignal;<br>connect(&amp;s,testSignal,this,&amp;MainWidget::dealSlot);</p>
 </blockquote>
-<p>窗口默认是隐藏的，需要人为显示</p>
+<hr>
+<p>指针要记得在堆上创建空间,且已经通过构造函数与指定父对象</p>
 <blockquote>
-<p>w.show();</p>
+<p>b2 = new QPushButton(this);</p>
 </blockquote>
-<p> 让程序一直执行下去,等待用户操作和等待事件发生</p>
+<p>这种情况已经指定了父对象，具体可以F1看QPushButton</p>
+<hr>
+<p>最后看subwidget.cpp</p>
+<p>使用 signals 标记信号函数，信号是一个函数声明，返回 void，不需要实现函数代码，信号可以重载</p>
 <blockquote>
-<p>a.exec(); </p>
+<p>void mySignal();<br>void mySignal(int,QString);</p>
+</blockquote>
+<p>emit用于发出信号<br>使用 emit 在恰当的位置发送信号</p>
+<blockquote>
+<p>emit mySignal();</p>
 </blockquote>
 
     </article>
@@ -458,17 +466,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/12/12/QT_day1.2/" title= "QT day1.2">
-                    <div class="nextTitle">QT day1.2</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/12/10/MarkDown/" title= "Markdown">
-                    <div class="prevTitle">Markdown</div>
+                <a href= "/2019/12/12/QT_day1.2/" title= "QT day1.2">
+                    <div class="prevTitle">QT day1.2</div>
                 </a>
             
         </li>

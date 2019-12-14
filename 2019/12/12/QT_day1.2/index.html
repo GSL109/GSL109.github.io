@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">323</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">335</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -424,9 +424,9 @@ height:50vh;
 </blockquote>
 <p>正文：</p>
 <blockquote>
-<p>int main(int argc, char *<em>argv)<br>{<br>&emsp;QApplication app(argc,argv);<br>&emsp;QWidget w;<br>&emsp; w.setWindowTitle(QString(“主要看气质”));//设置标题<br>&emsp;/</em>如果不指定父对象，对象和对象（窗口和窗&gt;口）没有关系，独立的<br>     *a指定b为它的父对象，a放在b的上面<br>     * 制定父对象，有两种方法<br>     *      1）setParent<br>     *      2）通过构造函数传参<br>     * 指定父对象，只需要父对象显示，上面的子对象自动显示<br>     */<br>&emsp;QPushButton b;<br>&emsp;  b.setText(“@~@”);//给按钮设定内容<br>&emsp;    b.setParent(&amp;w);//指定父对象<br>&emsp;b.move(100,100);//移动按钮<br>&emsp;QPushButton b1(&amp;w);//通过构造函数传参<br>&emsp;b.setText(“abc”);<br>&emsp;w.show();<br>&emsp; app.exec();<br>&emsp;return 0;<br>}</p>
+<p>int main(int argc, char *<em>argv)<br>{<br>&emsp;QApplication app(argc,argv);<br>&emsp;QWidget w;<br>&emsp; w.setWindowTitle(QString(“主要看气质”));//设置标题<br>&emsp;/</em>如果不指定父对象，对象和对象（窗口和窗&gt;口）没有关系，独立的<br>     *（主要是为了这个）a指定b为它的父对象，a放在b的上面<br>     * 制定父对象，有两种方法<br>     *      1）setParent<br>     *      2）通过构造函数传参<br>     * （也为了这个）指定父对象，只需要父对象显示，上面的子对象自动显示<br>     */<br>&emsp;QPushButton b;<br>&emsp;  b.setText(“@~@”);//给按钮设定内容<br>&emsp;    b.setParent(&amp;w);//指定父对象<br>&emsp;b.move(100,100);//移动按钮<br>&emsp;QPushButton b1(&amp;w);//通过构造函数传参<br>&emsp;b.setText(“abc”);<br>&emsp;w.show();<br>&emsp; app.exec();<br>&emsp;return 0;<br>}</p>
 </blockquote>
-<p>**我们最好从开始就养成良好习惯，在 Qt 中，尽量在构<br>造的时候就指定 parent 对象，并且大胆在堆上创建</p>
+<p>**我们最好从开始就养成良好习惯，在 Qt 中，尽量在构造的时候就指定 parent 对象，并且大胆在堆上创建</p>
 
     </article>
     <!-- license  -->
@@ -434,6 +434,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/12/14/QT_day1.3/" title= "QT day1.3">
+                    <div class="nextTitle">QT day1.3</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -586,9 +591,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 4
         </div>
         <!-- search  -->
         
@@ -633,6 +645,20 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2019/12/12/QT_day1.2/" >QT day1.2</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/14/QT_day1.3/" >QT day1.3</a>
         </li>
     
     </div>
