@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/15/QT_day1.5/" >
+            
+                <span>QT day1.5</span>
+        </a>
+        <div class="abstract-content">
+            #学习目的：纯手动创建简单的菜单栏_工具栏
+先建立一个不创建界面的QMainWindow项目,类名为MainWindow
+
+###添加菜单栏
+
+#include &lt; QMenuBar &gt;QMenuBar *mBar = menuBar();
+
+添加菜单(如：名字为文件)在菜单栏上
+
+#include &lt; QMenu &gt;QMenu *pFile = mBar-&gt;addMenu(“文件”);
+
+添加菜单项，添加动作(如：新建)在菜单上
+
+/#include &lt; QAction &gt;QAction *pNew = pFile-&gt;addAction(...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/15</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/12/15/QT_day1.4/" >
             
                 <span>QT day1.4</span>
@@ -686,9 +722,20 @@ HEAD...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 6
         </div>
         <!-- search  -->
         
@@ -729,6 +776,11 @@ HEAD...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2019/12/15/QT_day1.5/" >QT day1.5</a>
+        </li>
     
     
         <li class="archive-post-item">

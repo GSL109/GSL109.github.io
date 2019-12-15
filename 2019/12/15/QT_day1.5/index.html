@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>GSL&#39;s Blog</title>
+    <title>QT day1.5 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >GSL&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">QT day1.5</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>GSL's Blog.</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            GSL's Blog.
-            <!-- 文章页  -->
+            QT day1.5
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,43 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                JUST DO IT
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">336</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/12/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,351 +393,113 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/15/QT_day1.5/" >
-            
-                <span>QT day1.5</span>
-        </a>
-        <div class="abstract-content">
-            #学习目的：纯手动创建简单的菜单栏_工具栏
-先建立一个不创建界面的QMainWindow项目,类名为MainWindow
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>#学习目的：纯手动创建简单的菜单栏_工具栏</p>
+<p>先建立一个不创建界面的QMainWindow项目,类名为MainWindow</p>
+<hr>
+<p>###添加菜单栏</p>
+<blockquote>
+<p>#include &lt; QMenuBar &gt;<br>QMenuBar *mBar = menuBar();</p>
+</blockquote>
+<p>添加菜单(如：名字为文件)在菜单栏上</p>
+<blockquote>
+<p>#include &lt; QMenu &gt;<br>QMenu *pFile = mBar-&gt;addMenu(“文件”);</p>
+</blockquote>
+<p>添加菜单项，添加动作(如：新建)在菜单上</p>
+<blockquote>
+<p>/#include &lt; QAction &gt;<br>QAction *pNew = pFile-&gt;addAction(“新建”);</p>
+</blockquote>
+<p>给这个动作(如：新建)绑定信号与槽，实现功能</p>
+<blockquote>
+<p>connect(pNew, &amp;QAction::triggered,<br>            <a href="">=</a><br>            {<br>                qDebug() &lt;&lt; “新建被按下”;<br>            }<br>            );</p>
+</blockquote>
+<p>添加分割线(为了美观)</p>
+<blockquote>
+<p>pFile-&gt;addSeparato(); //添加分割线</p>
+</blockquote>
+<hr>
+<p>工具栏(是菜单项的快捷方式)</p>
+<blockquote>
+<p>#include &lt; QToolBar &gt;<br>QToolBar *toolBar = addToolBar(“toolBar”);</p>
+</blockquote>
+<p>工具栏添加快捷键</p>
+<blockquote>
+<p>toolBar-&gt;addAction(pNew);</p>
+</blockquote>
+<p>工具栏也可以添加控件</p>
+<blockquote>
+<p>toolBar-&gt;addWidget(b);</p>
+</blockquote>
+<hr>
+<p>状态栏</p>
+<blockquote>
+<p>#include &lt; QStatusBar &gt;<br>QStatusBar *sBar = statusBar();</p>
+</blockquote>
+<p>状态栏添加控件分为两种</p>
+<ol>
+<li>从左往右添加<blockquote>
+<p>sBar-&gt;addWidget(new QLabel(“Normal text file”, this));</p>
+</blockquote>
+</li>
+<li>从右往左添加<blockquote>
+<p>sBar-&gt;addPermanentWidget(new QLabel(“3”, this));</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p>添加文本框(也叫文字编辑嘛，所以叫QTextEdit)</p>
+<blockquote>
+<p>#include &lt; QTextEdit &gt;<br>QTextEdit *textEdit = new QTextEdit(this);</p>
+</blockquote>
+<hr>
+<p>添加核心控件(在函数里面添加想要的东西就好，不管是什么)</p>
+<blockquote>
+<p>setCentralWidget(textEdit);</p>
+</blockquote>
+<hr>
+<p>浮动窗口(Dock是码头的意思)</p>
+<blockquote>
+<p>#include &lt; QDockWidget &gt;<br>QDockWidget *dock = new QDockWidget(this);<br>addDockWidget(Qt::RightDockWidgetArea, dock);</p>
+</blockquote>
+<p>给浮动窗口添加控件</p>
+<blockquote>
+<p>dock-&gt;setWidget(new QTextEdit(this));</p>
+</blockquote>
 
-###添加菜单栏
-
-#include &lt; QMenuBar &gt;QMenuBar *mBar = menuBar();
-
-添加菜单(如：名字为文件)在菜单栏上
-
-#include &lt; QMenu &gt;QMenu *pFile = mBar-&gt;addMenu(“文件”);
-
-添加菜单项，添加动作(如：新建)在菜单上
-
-/#include &lt; QAction &gt;QAction *pNew = pFile-&gt;addAction(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/15</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/15/QT_day1.4/" >
-            
-                <span>QT day1.4</span>
-        </a>
-        <div class="abstract-content">
-            #学习目的：坐标
-先建立一个不创建界面的QWidget项目,类名为mywidget
-对于父窗口（主窗口），坐标系统相对于屏幕     * 原点：相对于屏幕左上角     * x: 往右递增     * y: 往下递增
-
-move(100, 100);
-
-
-子窗口，坐标系统相对于父窗口     * 原点：相对于窗口空白区域左上角（不包括边框）     * x: 往右递增     * y: 往下递增
-
-QPushButton *b1 = new QPushButton(this);QPushButton *b2 = new QPushButton(b1);b2-&gt;move(10, 10...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/15</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/14/QT_day1.3/" >
-            
-                <span>QT day1.3</span>
-        </a>
-        <div class="abstract-content">
-            #学习目的：信号与槽
-先建立一个不创建界面的QWidget项目,类名为mainwidget
-
-再建一个窗口方法：直接右键点击工程名-&gt;添加新文件-&gt;C++ Class(名字为subwidget)
-
-
-
-只有继承了 QObject类的类，才具有信号槽的能力.凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT
-
-1. 在.pro文件中
-CONFIG 用来告诉 qmake 关于应用程序的配置信息。这里目的是：使用 c++11 的特性。在这里使用“+=”，是因为我们添加我们的配置选项到任何一个已经存在中。这样做比使用“=”那样替换已经指定...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/14</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/12/QT_day1.2/" >
-            
-                <span>QT day1.2</span>
-        </a>
-        <div class="abstract-content">
-            #学习目的：简单完全手写一个QT项目
-先建立一个空项目
-
-New Project-&gt;其他项目-&gt;Empty qmake Project
-
-1. 在.pro文件中
-添加    模块
-
-QT += widgets
-
-添加源文件
-
-SOURCES +=     main.cpp
-
-2. 在.cpp文件中
-添加应用程序类
-
-#include  &lt; QApplication &gt;
-
-因为需要窗口，所以添加窗口控件基类
-
-#include &lt; QWidget &gt;
-
-因为需要添加按钮，所以添加按钮类
-
-#include &lt; QPushButton &gt;
-
-正...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/12</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/11/QT%20day1.1/" >
-            
-                <span>QT day1.1</span>
-        </a>
-        <div class="abstract-content">
-            #学习目的：新建一个QT项目，并了解各文件中的信息
-先建立一个没有ui界面的QWidget工程
-1. 在.pro文件中
-模块
-
-QT       += core gui
-
-高于4版本，添加QT+=widgets，为了兼容Qt4
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-应用程序的名字
-
-TARGET = GSL_Firstapp
-
-指定makefile的类型：app
-
-TEMPLATE = app
-
-源文件 .cpp文件
-
-SOURCES += main.cpp       mywidget.cpp
-
-头文件 .h文件
-
-HEAD...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/11</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/10/MarkDown/" >
-            
-                <span>Markdown</span>
-        </a>
-        <div class="abstract-content">
-            
-- - -title: xxx- - -
-
-标题(用英文符号)
-
-#
-
-几个#号就是几级标题
-
--（+空格）
-
-无序列表
-
-阿拉伯数字+空格 （如1. ）
-
- 有序列表(用英文符号)
-
-![xxx(在图片没有显示的时候，就会显示这个xxx)]（图片地址）
-
-插入图片方法(用英文符号)
-
-[网址信息，点击可进]（网址）
-
-插入超链接(用英文符号)
-
-左右两边各两个*
-
-加粗
-
-左右两边各一个*
-
-斜体
-
-&lt; font face=”什么字体” color=“颜色” size=“字体大小” &gt;xxxx（内容）&lt; font &gt;&lt; /center &gt;
-
-居中字...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575575633915&di=66f05be05b4cee67edad5e134dcfc4f0&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20191105%2F4e5981c392404a7f84360e15f4f502b8.jpeg >
-    <div class="profile-name">GSL</div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="https://github.com/GSL109/GSL109.github.io" class="iconfont-archer github" target="_blank" title=github></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/12/15/QT_day1.4/" title= "QT day1.4">
+                    <div class="prevTitle">QT day1.4</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -767,6 +571,24 @@ HEAD...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -980,6 +802,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
