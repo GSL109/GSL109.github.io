@@ -416,22 +416,28 @@ height:50vh;
 <p>查看创建好的表的数据结构：describe 表名；</p>
 </blockquote>
 <blockquote>
-<p>往数据表中添加数据记录：insert into 表名 values();<br><em>如：insert into teacher values(1,’2’,NULL,3,’1999-4-14’)</em><br>可以指定插入的字段<br><em>如：insert into teacher (名字)  values (‘翁瀚’);</em></p>
+<p>往数据表中添加数据记录：insert into 表名 values();</p>
 </blockquote>
+<p><em>如：insert into teacher values(1,’2’,NULL,3,’1999-4-14’)</em></p>
 <blockquote>
-<p>删除记录：delete from 表名 where 字段名=xxxx;<br><em>如：delete from student where 名字=’张美丽’;</em></p>
+<p>可以指定插入的字段</p>
 </blockquote>
+<p><em>如：insert into teacher (名字)  values (‘翁瀚’);</em></p>
 <blockquote>
-<p>改记录数据：update 表名 set 字段名=xxx where 字段名=xxx;<br><em>如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</em></p>
+<p>删除记录：delete from 表名 where 字段名=xxxx;</p>
 </blockquote>
-<hr>
-<p><a href="https://www.runoob.com/mysql/mysql-data-types.html" target="_blank" rel="noopener">很多种数据类型</a></p>
+<p><em>如：delete from student where 名字=’张美丽’;</em></p>
+<blockquote>
+<p>改记录数据：update 表名 set 字段名=xxx where 字段名=xxx;</p>
+</blockquote>
+<h2 id="如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’"><a href="#如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’" class="headerlink" title="如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;"></a><em>如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</em></h2><p><a href="https://www.runoob.com/mysql/mysql-data-types.html" target="_blank" rel="noopener">很多种数据类型</a></p>
 <p>double类型使用<br>实例：double(10,2)//长度为10，小数点2</p>
 <hr>
 <h3 id="mysql建表约束："><a href="#mysql建表约束：" class="headerlink" title="mysql建表约束："></a>mysql建表约束：</h3><p>1 #### 主键约束 primary key</p>
 <blockquote>
-<p>它能够唯一确定表中的一条记录，也就是我们通过给某个字段添加约束，就可以使得该字段不重复且不为空<br><em>如：</em><br><em>create table user</em><br><em>( id int(5) primary key,</em></p>
+<p>它能够唯一确定表中的一条记录，也就是我们通过给某个字段添加约束，就可以使得该字段不重复且不为空</p>
 </blockquote>
+<p><em>如：</em><br><em>create table user</em><br><em>( id int(5) primary key,</em></p>
 <ul>
 <li>name varchar(20)*</li>
 <li>)*</li>
@@ -446,8 +452,9 @@ height:50vh;
 </ul>
 <p>2 #### 联合主键 primary key()</p>
 <blockquote>
-<p>只要两个或者多个主键值加起来不重复就好<br><em>如：</em><br><em>create table user_1</em><br><em>(</em></p>
+<p>只要两个或者多个主键值加起来不重复就好</p>
 </blockquote>
+<p><em>如：</em><br><em>create table user_1</em><br><em>(</em></p>
 <ul>
 <li>id int,*</li>
 <li>name varchar(20),*</li>
@@ -471,12 +478,14 @@ height:50vh;
 <p><em>副表（记得是references）</em><br><em>create table students</em><br><em>(</em><br>     <em>id int,</em><br>     <em>name varchar(20),</em><br>     <em>class_no int,</em><br>     <em>foreign key(class_no) references class(id)</em><br><em>);</em></p>
 <p>5 #### 唯一约束</p>
 <blockquote>
-<p>约束修饰字段的值不可以重复，如果给两个字段添加唯一约束，那么这两个字段加起来不能重复（类似于联合主键）<br><em>如：</em><br><em>create table user_5  *<br>*( *<br>*id int, *<br>*name  varchar(20), *<br>*unique(id) *<br>*); *<br>*或者如：</em><br><em>create table user_5</em><br><em>(</em><br><em>id int unique,</em><br><em>name  varchar(20)</em><br><em>);</em></p>
+<p>约束修饰字段的值不可以重复，如果给两个字段添加唯一约束，那么这两个字段加起来不能重复（类似于联合主键）</p>
 </blockquote>
+<p><em>如：</em><br><em>create table user_5  *<br>*( *<br>*id int, *<br>*name  varchar(20), *<br>*unique(id) *<br>*); *<br>*或者如：</em><br><em>create table user_5</em><br><em>(</em><br><em>id int unique,</em><br><em>name  varchar(20)</em><br><em>);</em></p>
 <p>6 #### 非空约束 not null</p>
 <blockquote>
-<p>修饰的字段不能为空<br><em>如：(只有一种方式）</em><br><em>create table user_3</em><br><em>(</em></p>
+<p>修饰的字段不能为空</p>
 </blockquote>
+<p><em>如：(只有一种方式）</em><br><em>create table user_3</em><br><em>(</em></p>
 <ul>
 <li>id int,*</li>
 <li>varchar(20) not null*</li>
@@ -484,8 +493,9 @@ height:50vh;
 </ul>
 <p>7 #### 默认约束 default</p>
 <blockquote>
-<p>就是当我们插入字段值的时候，如果没有传值，就会使用默认值；但是传了值就不会使用默认值<br><em>如：(只有一种方式）</em></p>
+<p>就是当我们插入字段值的时候，如果没有传值，就会使用默认值；但是传了值就不会使用默认值</p>
 </blockquote>
+<p><em>如：(只有一种方式）</em></p>
 <ul>
 <li>create table user_2*</li>
 <li>(*</li>
@@ -497,13 +507,15 @@ height:50vh;
 </ul>
 <hr>
 <blockquote>
-<p>创建表后添加主键约束：<br><strong>第一种方式(使用add)alter table 表名 add primary key（字段名）；✔</strong><br><em>如：alter table student add primary key(名字);</em><br><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 primary key</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  primary key;</em></p>
+<p>创建表后添加主键约束：</p>
 </blockquote>
+<p><strong>第一种方式(使用add)alter table 表名 add primary key（字段名）；✔</strong><br><em>如：alter table student add primary key(名字);</em><br><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 primary key</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  primary key;</em></p>
 <p><strong>创建表后删除主键约束：alter table 表名 drop primary key;✔</strong><br><em>如：alter table student drop primary key;</em></p>
 <hr>
 <blockquote>
-<p>创建表后添加唯一约束：<br><strong>第一种方式(使用add) alter table student add unique(字段名);✔</strong><br><em>如：alter table student add unique(学号);</em></p>
+<p>创建表后添加唯一约束：</p>
 </blockquote>
+<p><strong>第一种方式(使用add) alter table student add unique(字段名);✔</strong><br><em>如：alter table student add unique(学号);</em></p>
 <p><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 unique;</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  unique;</em></p>
 <p><strong>创建表后删除主键约束：alter table 表名 drop index 字段名;✔</strong><br><em>如：alter table student drop index name;</em></p>
 
@@ -632,7 +644,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql建表约束："><span class="toc-number">1.</span> <span class="toc-text">mysql建表约束：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’"><span class="toc-number">1.</span> <span class="toc-text">如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql建表约束："><span class="toc-number">1.1.</span> <span class="toc-text">mysql建表约束：</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
