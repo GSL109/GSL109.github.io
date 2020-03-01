@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>QT day1.2 · GSL&#39;s Blog</title>
+    <title>MySQL 简介 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >GSL&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">QT day1.2</a>
+                <a href="#" class="post-name">MySQL 简介</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            QT day1.2
+            MySQL 简介
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">335</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">139</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/12</span>
+                    <span class="post-intro-time">2020/03/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,38 +395,12 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#学习目的：简单完全手写一个QT项目</p>
-<p>先建立一个空项目</p>
-<blockquote>
-<p>New Project-&gt;其他项目-&gt;Empty qmake Project</p>
-</blockquote>
-<p><font  size="4"><strong>1. 在.pro文件中</strong></font></p>
-<p>添加    模块</p>
-<blockquote>
-<p>QT += widgets</p>
-</blockquote>
-<p>添加源文件</p>
-<blockquote>
-<p>SOURCES +=<br>     main.cpp</p>
-</blockquote>
-<p><font  size="4"><strong>2. 在.cpp文件中</strong></font></p>
-<p>添加应用程序类</p>
-<blockquote>
-<p>#include  &lt; QApplication &gt;</p>
-</blockquote>
-<p>因为需要窗口，所以添加窗口控件基类</p>
-<blockquote>
-<p>#include &lt; QWidget &gt;</p>
-</blockquote>
-<p>因为需要添加按钮，所以添加按钮类</p>
-<blockquote>
-<p>#include &lt; QPushButton &gt;</p>
-</blockquote>
-<p>正文：</p>
-<blockquote>
-<p>int main(int argc, char *<em>argv)<br>{<br>&emsp;QApplication app(argc,argv);<br>&emsp;QWidget w;<br>&emsp; w.setWindowTitle(QString(“主要看气质”));//设置标题<br>&emsp;/</em>如果不指定父对象，对象和对象（窗口和窗&gt;口）没有关系，独立的<br>     *（主要是为了这个）a指定b为它的父对象，a放在b的上面<br>     * 制定父对象，有两种方法<br>     *      1）setParent<br>     *      2）通过构造函数传参<br>     * （也为了这个）指定父对象，只需要父对象显示，上面的子对象自动显示<br>     */<br>&emsp;QPushButton b;<br>&emsp;  b.setText(“@~@”);//给按钮设定内容<br>&emsp;    b.setParent(&amp;w);//指定父对象<br>&emsp;b.move(100,100);//移动按钮<br>&emsp;QPushButton b1(&amp;w);//通过构造函数传参<br>&emsp;b.setText(“abc”);<br>&emsp;w.show();<br>&emsp; app.exec();<br>&emsp;return 0;<br>}</p>
-</blockquote>
-<p>**我们最好从开始就养成良好习惯，在 Qt 中，尽量在构造的时候就指定 parent 对象，并且大胆在堆上创建</p>
+        <p>1 MySQL是关系型数据库管理系统(存储方式是一张二维表）<br>2 具有体积小，速度快，成本低，可移植的特点<br>3 表是关系型数据库的基本存储单位<br>4 表里面一行称为一个记录。即使一个对象的一组数据<br>5 表里面的一列称为一个字段。即表中所描述的对象的一个属性<br>6 数据完整性：</p>
+<ul>
+<li>实体完整性（行上实施）</li>
+<li>域完整性（列上实施）</li>
+<li>参照完整性（表上实施）</li>
+</ul>
 
     </article>
     <!-- license  -->
@@ -435,17 +409,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/12/14/QT_day1.3/" title= "QT day1.3">
-                    <div class="nextTitle">QT day1.3</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/12/11/QT%20day1.1/" title= "QT day1.1">
-                    <div class="prevTitle">QT day1.1</div>
+                <a href= "/2019/12/15/QT_day1.5/" title= "QT day1.5">
+                    <div class="prevTitle">QT day1.5</div>
                 </a>
             
         </li>
