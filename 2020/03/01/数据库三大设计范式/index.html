@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>QT day1.5 · GSL&#39;s Blog</title>
+    <title>数据库三大设计范式 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >GSL&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">QT day1.5</a>
+                <a href="#" class="post-name">数据库三大设计范式</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            QT day1.5
+            数据库三大设计范式
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">336</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">420</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/15</span>
+                    <span class="post-intro-time">2020/03/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,77 +395,32 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#学习目的：纯手动创建简单的菜单栏_工具栏</p>
-<p>先建立一个不创建界面的QMainWindow项目,类名为MainWindow</p>
-<hr>
-<p>###添加菜单栏</p>
+        <p>###1.第一范式</p>
 <blockquote>
-<p>#include &lt; QMenuBar &gt;<br>QMenuBar *mBar = menuBar();</p>
+<p>数据表中的所有字段都是不可拆分的原子</p>
 </blockquote>
-<p>添加菜单(如：名字为文件)在菜单栏上</p>
 <blockquote>
-<p>#include &lt; QMenu &gt;<br>QMenu *pFile = mBar-&gt;addMenu(“文件”);</p>
+<p>范式，设计的越详细，对于某些实际操作可能更好，但是不一定都是好处</p>
 </blockquote>
-<p>添加菜单项，添加动作(如：新建)在菜单上</p>
+<p><em>例如：create table people</em><br><em>(</em><br><em>id int,</em><br><em>name varchar(10),</em><br><em>address varchar(20)</em><br><em>);</em></p>
 <blockquote>
-<p>/#include &lt; QAction &gt;<br>QAction *pNew = pFile-&gt;addAction(“新建”);</p>
+<p>在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式<br><em>可改为：create table people</em><br><em>(</em><br><em>id int,</em><br><em>name varchar(10),</em><br><em>country varhar(10),</em><br><em>province varchar(10),</em><br><em>city varchar(10),</em><br><em>detail varchar(10)</em><br><em>);</em><br>把地址拆分为国，省，城市，具体地址，才满足第一范式</p>
 </blockquote>
-<p>给这个动作(如：新建)绑定信号与槽，实现功能</p>
+<p>###2.第二范式</p>
 <blockquote>
-<p>connect(pNew, &amp;QAction::triggered,<br>            <a href="">=</a><br>            {<br>                qDebug() &lt;&lt; “新建被按下”;<br>            }<br>            );</p>
+<p>必须是满足第一范式的前提下，第二范式要求，除主键外的每一列都必须完全依赖于主键。<br>这种情况不满足第二范式：如果出现不完全依赖，只可能发生在联合主键的情况下。</p>
 </blockquote>
-<p>添加分割线(为了美观)</p>
+<p><em>例如：create table myorder</em><br><em>(</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>product_name varchar(20),</em><br><em>customer_name varchar(20)</em><br><em>primary key(product_id,customer_id)</em><br><em>);</em></p>
 <blockquote>
-<p>pFile-&gt;addSeparato(); //添加分割线</p>
+<p>很显然product_name与product_id有依赖关系，customer_name和customer_id也有依赖关系。<br>这样不满足第二范式<br><em>所以要改为：</em><br><em>create table id</em><br><em>(</em><br><em>order id primary key,</em><br><em>product_id int,</em><br><em>customer_id int</em><br><em>);</em></p>
 </blockquote>
-<hr>
-<p>工具栏(是菜单项的快捷方式)</p>
+<p><em>create table product</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br><em>);</em></p>
+<p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br>*);</p>
+<p>###3.第三范式</p>
 <blockquote>
-<p>#include &lt; QToolBar &gt;<br>QToolBar *toolBar = addToolBar(“toolBar”);</p>
+<p>必须满足第二范式，除开主键列的其他列之间不能有传递依赖关系。<br><em>例如：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>customer_phone varchar(15)</em><br><em>)；</em><br>这样customer_phone不仅与主键order_id有关，还与customer_id有关，这样不满足第三范式<br><em>应改为：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int</em><br><em>);</em></p>
 </blockquote>
-<p>工具栏添加快捷键</p>
-<blockquote>
-<p>toolBar-&gt;addAction(pNew);</p>
-</blockquote>
-<p>工具栏也可以添加控件</p>
-<blockquote>
-<p>toolBar-&gt;addWidget(b);</p>
-</blockquote>
-<hr>
-<p>状态栏</p>
-<blockquote>
-<p>#include &lt; QStatusBar &gt;<br>QStatusBar *sBar = statusBar();</p>
-</blockquote>
-<p>状态栏添加控件分为两种</p>
-<ol>
-<li>从左往右添加<blockquote>
-<p>sBar-&gt;addWidget(new QLabel(“Normal text file”, this));</p>
-</blockquote>
-</li>
-<li>从右往左添加<blockquote>
-<p>sBar-&gt;addPermanentWidget(new QLabel(“3”, this));</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<p>添加文本框(也叫文字编辑嘛，所以叫QTextEdit)</p>
-<blockquote>
-<p>#include &lt; QTextEdit &gt;<br>QTextEdit *textEdit = new QTextEdit(this);</p>
-</blockquote>
-<hr>
-<p>添加核心控件(在函数里面添加想要的东西就好，不管是什么)</p>
-<blockquote>
-<p>setCentralWidget(textEdit);</p>
-</blockquote>
-<hr>
-<p>浮动窗口(Dock是码头的意思)</p>
-<blockquote>
-<p>#include &lt; QDockWidget &gt;<br>QDockWidget *dock = new QDockWidget(this);<br>addDockWidget(Qt::RightDockWidgetArea, dock);</p>
-</blockquote>
-<p>给浮动窗口添加控件</p>
-<blockquote>
-<p>dock-&gt;setWidget(new QTextEdit(this));</p>
-</blockquote>
+<p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20),</em><br><em>customer_phone varchar(15)</em><br><em>);</em></p>
 
     </article>
     <!-- license  -->
@@ -474,17 +429,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/01/MySQL%E7%AE%80%E4%BB%8B/" title= "MySQL 简介">
-                    <div class="nextTitle">MySQL 简介</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/12/15/QT_day1.4/" title= "QT day1.4">
-                    <div class="prevTitle">QT day1.4</div>
+                <a href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" title= "表格数据库操作命令">
+                    <div class="prevTitle">表格数据库操作命令</div>
                 </a>
             
         </li>
