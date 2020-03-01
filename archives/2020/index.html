@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>QT day1.1 · GSL&#39;s Blog</title>
+    <title>GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >GSL&#39;s Blog.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">QT day1.1</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>GSL's Blog.</a>
 </header>
@@ -231,68 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            QT day1.1
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">260</span>Reading time: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/11</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -393,100 +338,42 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>#学习目的：新建一个QT项目，并了解各文件中的信息</p>
-<p>先建立一个没有ui界面的QWidget工程</p>
-<p><font  size="4"><strong>1. 在.pro文件中</strong></font></p>
-<p>模块</p>
-<blockquote>
-<p>QT       += core gui</p>
-</blockquote>
-<p>高于4版本，添加QT+=widgets，为了兼容Qt4</p>
-<blockquote>
-<p>greaterThan(QT_MAJOR_VERSION, 4): QT += widgets</p>
-</blockquote>
-<p>应用程序的名字</p>
-<blockquote>
-<p>TARGET = GSL_Firstapp</p>
-</blockquote>
-<p>指定makefile的类型：app</p>
-<blockquote>
-<p>TEMPLATE = app</p>
-</blockquote>
-<p>源文件 .cpp文件</p>
-<blockquote>
-<p>SOURCES += main.cpp<br>       mywidget.cpp</p>
-</blockquote>
-<p>头文件 .h文件</p>
-<blockquote>
-<p>HEADERS  += mywidget.h</p>
-</blockquote>
-<p><font  size="4"><strong>2. 在.h文件中</strong></font></p>
-<p>凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT</p>
-<blockquote>
-<p>Q_OBJECT</p>
-</blockquote>
-<p><font  size="4"><strong>3. 在.cpp文件中</strong></font></p>
-<ul>
-<li>QApplication是应用程序类</li>
-<li>Qt头文件没有.h</li>
-<li>头文件和类名一样</li>
-<li>前两个都是大写</li>
-</ul>
-<p>有且只有一个应用程序类的对象</p>
-<blockquote>
-<p>QApplication a(argc, argv);</p>
-</blockquote>
-<p>MyWidget继承于QWidget，QWidget是一个窗口基类，所以MyWidget也是窗口类。w就是一个窗口</p>
-<blockquote>
-<p>MyWidget w;</p>
-</blockquote>
-<p>窗口默认是隐藏的，需要人为显示</p>
-<blockquote>
-<p>w.show();</p>
-</blockquote>
-<p> 让程序一直执行下去,等待用户操作和等待事件发生</p>
-<blockquote>
-<p>a.exec(); </p>
-</blockquote>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/01/MySQL%20%E7%AE%80%E4%BB%8B/" >
+            
+                <span>MySQL 简介</span>
+        </a>
+        <div class="abstract-content">
+            
+title: MySQL ���
 
+1 MySQL�ǹ�ϵ�����ݿ����ϵͳ(�洢��ʽ��һ�Ŷ�ά����2 �������С���ٶȿ죬�ɱ��ͣ�����ֲ���ص�3 ���ǹ�ϵ�����ݿ�Ļ����洢��λ4 ������һ�г�Ϊһ����¼����ʹһ�������һ������5 �������һ�г�Ϊһ���ֶΡ��������������Ķ����һ������6 ���������ԣ�
+
+ʵ�������ԣ�����ʵʩ��
+�������ԣ�����ʵʩ��
+���������ԣ�����ʵʩ��
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/12/12/QT_day1.2/" title= "QT day1.2">
-                    <div class="nextTitle">QT day1.2</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/12/10/MarkDown/" title= "Markdown">
-                    <div class="prevTitle">Markdown</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -560,24 +447,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -808,8 +677,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
