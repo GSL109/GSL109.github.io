@@ -433,7 +433,7 @@ height:50vh;
 <h2 id="如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’"><a href="#如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’" class="headerlink" title="如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;"></a><em>如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</em></h2><p><a href="https://www.runoob.com/mysql/mysql-data-types.html" target="_blank" rel="noopener">很多种数据类型</a></p>
 <p>double类型使用<br>实例：double(10,2)//长度为10，小数点2</p>
 <hr>
-<h3 id="mysql建表约束："><a href="#mysql建表约束：" class="headerlink" title="mysql建表约束："></a>mysql建表约束：</h3><p>1 #### 主键约束 primary key</p>
+<h3 id="mysql建表约束："><a href="#mysql建表约束：" class="headerlink" title="mysql建表约束："></a>mysql建表约束：</h3><p>1 主键约束 primary key</p>
 <blockquote>
 <p>它能够唯一确定表中的一条记录，也就是我们通过给某个字段添加约束，就可以使得该字段不重复且不为空</p>
 </blockquote>
@@ -450,7 +450,7 @@ height:50vh;
 <li>primary key(id)*</li>
 <li>)*</li>
 </ul>
-<p>2 #### 联合主键 primary key()</p>
+<p>2 联合主键 primary key()</p>
 <blockquote>
 <p>只要两个或者多个主键值加起来不重复就好</p>
 </blockquote>
@@ -462,7 +462,7 @@ height:50vh;
 <li>primary key(id,name)*</li>
 <li>)*</li>
 </ul>
-<p>3 #### 自增约束 auto_increment</p>
+<p>3 自增约束 auto_increment</p>
 <blockquote>
 <p>能自动增长某一个添加了自增约束的字段。若添加记录时没有添加该字段，则该字段自动生成且为表中最后一个记录记录同字段+1；</p>
 </blockquote>
@@ -470,18 +470,18 @@ height:50vh;
 <blockquote>
 <p>当只添加名字时候，insert into use_2 (name) values(‘zhangshan’);<br>数据库会按顺序自动给生成id。此时id=1<br>再添加   insert into use_2 (name) values(‘zhangwei’);<br>数据库会按顺序自动生成id。此时id=2</p>
 </blockquote>
-<p>4 #### 外键约束 foreign key,references</p>
+<p>4 外键约束 foreign key,references</p>
 <blockquote>
 <p>涉及两个表：父表和子表 或者叫 主表和副表<br>a.主表中没有的数据值；在副表中是不可以使用的<br>b.主表中的记录一旦被副表引用，是不能被删除的</p>
 </blockquote>
 <p><em>主表：(被副表引用的字段要是主键）</em><br><em>create table class</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br><em>);</em></p>
 <p><em>副表（记得是references）</em><br><em>create table students</em><br><em>(</em><br>     <em>id int,</em><br>     <em>name varchar(20),</em><br>     <em>class_no int,</em><br>     <em>foreign key(class_no) references class(id)</em><br><em>);</em></p>
-<p>5 #### 唯一约束</p>
+<p>5 唯一约束</p>
 <blockquote>
 <p>约束修饰字段的值不可以重复，如果给两个字段添加唯一约束，那么这两个字段加起来不能重复（类似于联合主键）</p>
 </blockquote>
 <p><em>如：</em><br><em>create table user_5  *<br>*( *<br>*id int, *<br>*name  varchar(20), *<br>*unique(id) *<br>*); *<br>*或者如：</em><br><em>create table user_5</em><br><em>(</em><br><em>id int unique,</em><br><em>name  varchar(20)</em><br><em>);</em></p>
-<p>6 #### 非空约束 not null</p>
+<p>6 非空约束 not null</p>
 <blockquote>
 <p>修饰的字段不能为空</p>
 </blockquote>
@@ -491,7 +491,7 @@ height:50vh;
 <li>varchar(20) not null*</li>
 <li>);*</li>
 </ul>
-<p>7 #### 默认约束 default</p>
+<p>7 默认约束 default</p>
 <blockquote>
 <p>就是当我们插入字段值的时候，如果没有传值，就会使用默认值；但是传了值就不会使用默认值</p>
 </blockquote>
@@ -734,6 +734,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 9
@@ -746,20 +748,6 @@ top:50vh;
     
     
     
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/10</span><a class="archive-post-title" href= "/2019/12/10/MarkDown/" >Markdown</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
     
     <div class="archive-year"> Invalid date </div>
     <ul class="year-list">
@@ -784,6 +772,11 @@ top:50vh;
         </li>
     
     
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
+        </li>
+    
+    
     
     
     
@@ -794,7 +787,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2019/12/12/QT_day1.2/" >QT day1.2</a>
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href= "/2019/12/10/MarkDown/" >Markdown</a>
         </li>
     
     
@@ -822,7 +815,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2019/12/15/QT_day1.4/" >QT day1.4</a>
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2019/12/12/QT_day1.2/" >QT day1.2</a>
         </li>
     
     
@@ -845,26 +838,17 @@ top:50vh;
     
         </ul>
     
-    <div class="archive-year"> 2020 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2019/12/15/QT_day1.5/" >QT day1.5</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2019/12/15/QT_day1.4/" >QT day1.4</a>
         </li>
     
     </div>
