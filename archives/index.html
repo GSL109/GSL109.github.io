@@ -351,8 +351,7 @@
                 <span>数据库三大设计范式</span>
         </a>
         <div class="abstract-content">
-            ###1.第一范式
-
+            1.第一范式
 数据表中的所有字段都是不可拆分的原子
 
 
@@ -360,7 +359,7 @@
 
 例如：create table people(id int,name varchar(10),address varchar(20));
 
-在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city var...
+在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city varchar...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -449,11 +448,9 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
                 <span>QT day1.5</span>
         </a>
         <div class="abstract-content">
-            #学习目的：纯手动创建简单的菜单栏_工具栏
-先建立一个不创建界面的QMainWindow项目,类名为MainWindow
+            学习目的：纯手动创建简单的菜单栏_工具栏先建立一个不创建界面的QMainWindow项目,类名为MainWindow
 
-###添加菜单栏
-
+添加菜单栏
 #include &lt; QMenuBar &gt;QMenuBar *mBar = menuBar();
 
 添加菜单(如：名字为文件)在菜单栏上
@@ -462,7 +459,7 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
 
 添加菜单项，添加动作(如：新建)在菜单上
 
-/#include &lt; QAction &gt;QAction *pNew = pFile-&gt;addAction(...
+/#include &lt; QAction &gt;QAction *pNew = pFile-&gt;addAction(“新建”);...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -485,8 +482,7 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
                 <span>QT day1.4</span>
         </a>
         <div class="abstract-content">
-            #学习目的：坐标
-先建立一个不创建界面的QWidget项目,类名为mywidget
+            学习目的：坐标先建立一个不创建界面的QWidget项目,类名为mywidget
 对于父窗口（主窗口），坐标系统相对于屏幕     * 原点：相对于屏幕左上角     * x: 往右递增     * y: 往下递增
 
 move(100, 100);
@@ -494,7 +490,7 @@ move(100, 100);
 
 子窗口，坐标系统相对于父窗口     * 原点：相对于窗口空白区域左上角（不包括边框）     * x: 往右递增     * y: 往下递增
 
-QPushButton *b1 = new QPushButton(this);QPushButton *b2 = new QPushButton(b1);b2-&gt;move(10, 10...
+QPushButton *b1 = new QPushButton(this);QPushButton *b2 = new QPushButton(b1);b2-&gt;move(10, 10);...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -517,8 +513,7 @@ QPushButton *b1 = new QPushButton(this);QPushButton *b2 = new QPushButton(b1);b2
                 <span>QT day1.3</span>
         </a>
         <div class="abstract-content">
-            #学习目的：信号与槽
-先建立一个不创建界面的QWidget项目,类名为mainwidget
+            学习目的：信号与槽先建立一个不创建界面的QWidget项目,类名为mainwidget
 
 再建一个窗口方法：直接右键点击工程名-&gt;添加新文件-&gt;C++ Class(名字为subwidget)
 
@@ -527,7 +522,7 @@ QPushButton *b1 = new QPushButton(this);QPushButton *b2 = new QPushButton(b1);b2
 只有继承了 QObject类的类，才具有信号槽的能力.凡是 QObject 类（不管是直接子类还是间接子类），都应该在第一行代码写上 Q_OBJECT
 
 1. 在.pro文件中
-CONFIG 用来告诉 qmake 关于应用程序的配置信息。这里目的是：使用 c++11 的特性。在这里使用“+=”，是因为我们添加我们的配置选项到任何一个已经存在中。这样做比使用“=”那样替换已经指定...
+CONFIG 用来告诉 qmake 关于应用程序的配置信息。这里目的是：使用 c++11 的特性。在这里使用“+=”，是因为我们添加我们的配置选项到任何一个已经存在中。这样做比使用“=”那样替换已经指定的所...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -599,8 +594,7 @@ SOURCES +=     main.cpp
                 <span>QT day1.1</span>
         </a>
         <div class="abstract-content">
-            #学习目的：新建一个QT项目，并了解各文件中的信息
-先建立一个没有ui界面的QWidget工程
+            学习目的：新建一个QT项目，并了解各文件中的信息先建立一个没有ui界面的QWidget工程
 1. 在.pro文件中
 模块
 
@@ -624,7 +618,7 @@ SOURCES += main.cpp       mywidget.cpp
 
 头文件 .h文件
 
-HEAD...
+HEADER...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->

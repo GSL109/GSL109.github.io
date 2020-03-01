@@ -351,8 +351,7 @@
                 <span>数据库三大设计范式</span>
         </a>
         <div class="abstract-content">
-            ###1.第一范式
-
+            1.第一范式
 数据表中的所有字段都是不可拆分的原子
 
 
@@ -360,7 +359,7 @@
 
 例如：create table people(id int,name varchar(10),address varchar(20));
 
-在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city var...
+在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city varchar...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->

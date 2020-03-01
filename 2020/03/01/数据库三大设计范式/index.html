@@ -395,8 +395,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>###1.第一范式</p>
-<blockquote>
+        <h3 id="1-第一范式"><a href="#1-第一范式" class="headerlink" title="1.第一范式"></a>1.第一范式</h3><blockquote>
 <p>数据表中的所有字段都是不可拆分的原子</p>
 </blockquote>
 <blockquote>
@@ -406,8 +405,7 @@ height:50vh;
 <blockquote>
 <p>在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式<br><em>可改为：create table people</em><br><em>(</em><br><em>id int,</em><br><em>name varchar(10),</em><br><em>country varhar(10),</em><br><em>province varchar(10),</em><br><em>city varchar(10),</em><br><em>detail varchar(10)</em><br><em>);</em><br>把地址拆分为国，省，城市，具体地址，才满足第一范式</p>
 </blockquote>
-<p>###2.第二范式</p>
-<blockquote>
+<h3 id="2-第二范式"><a href="#2-第二范式" class="headerlink" title="2.第二范式"></a>2.第二范式</h3><blockquote>
 <p>必须是满足第一范式的前提下，第二范式要求，除主键外的每一列都必须完全依赖于主键。<br>这种情况不满足第二范式：如果出现不完全依赖，只可能发生在联合主键的情况下。</p>
 </blockquote>
 <p><em>例如：create table myorder</em><br><em>(</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>product_name varchar(20),</em><br><em>customer_name varchar(20)</em><br><em>primary key(product_id,customer_id)</em><br><em>);</em></p>
@@ -416,8 +414,7 @@ height:50vh;
 </blockquote>
 <p><em>create table product</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br><em>);</em></p>
 <p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br>*);</p>
-<p>###3.第三范式</p>
-<blockquote>
+<h3 id="3-第三范式"><a href="#3-第三范式" class="headerlink" title="3.第三范式"></a>3.第三范式</h3><blockquote>
 <p>必须满足第二范式，除开主键列的其他列之间不能有传递依赖关系。<br><em>例如：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>customer_phone varchar(15)</em><br><em>)；</em><br>这样customer_phone不仅与主键order_id有关，还与customer_id有关，这样不满足第三范式<br><em>应改为：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int</em><br><em>);</em></p>
 </blockquote>
 <p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20),</em><br><em>customer_phone varchar(15)</em><br><em>);</em></p>
@@ -542,7 +539,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-第一范式"><span class="toc-number">1.</span> <span class="toc-text">1.第一范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-第二范式"><span class="toc-number">2.</span> <span class="toc-text">2.第二范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-第三范式"><span class="toc-number">3.</span> <span class="toc-text">3.第三范式</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
