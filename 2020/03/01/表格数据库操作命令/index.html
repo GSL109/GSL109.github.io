@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1k</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -518,6 +518,10 @@ height:50vh;
 <p><strong>第一种方式(使用add) alter table student add unique(字段名);✔</strong><br><em>如：alter table student add unique(学号);</em></p>
 <p><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 unique;</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  unique;</em></p>
 <p><strong>创建表后删除主键约束：alter table 表名 drop index 字段名;✔</strong><br><em>如：alter table student drop index name;</em></p>
+<hr>
+<blockquote>
+<p>改变外键值<br>将外键的值设置为0，此时就是失效状态，命令：set foreign_key_checks = 0，这时就能删除数据了<br>删除之后，外键再设置为有效：</p>
+</blockquote>
 
     </article>
     <!-- license  -->
