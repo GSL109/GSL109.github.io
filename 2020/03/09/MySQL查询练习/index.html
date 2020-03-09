@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>表格数据库操作命令 · GSL&#39;s Blog</title>
+    <title>查询练习 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >GSL&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">表格数据库操作命令</a>
+                <a href="#" class="post-name">查询练习</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            表格数据库操作命令
+            查询练习
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.8k</span>Reading time: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/01</span>
+                    <span class="post-intro-time">2020/03/09</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,133 +395,57 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>MySQL对大小写不敏感</strong></p>
-<hr>
-<blockquote>
-<p>登陆数据库：mysql -uroot -p密码；<br>退出数据库服务器命令：exit；</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>1.show databases;       查看现有数据库<br>2.create database  名字;  新建数据</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>使用数据库（后来才能查询等）：use 数据库名字;<br>查询数据库中所有表格：show tables；<br>查询表格：select * from  表名;【可以用where加条件如：select * from student where 学号=19;】</p>
-</blockquote>
-<hr>
-<p>create table 表名(<br>属性名 数据类型 [约束条件],<br>属性名 数据类型 [约束条件],<br>属性名 数据类型 [约束条件]<br>);<br><em>[]中括号种的内容是可选的</em><br><em>最后一个属性后面没有逗号</em></p>
-<p>eg：<br>create table student(<br>学号 int,<br>名字 varchar(10),<br>年龄 int,<br>性别 varchar(5)<br>);</p>
-<hr>
-<blockquote>
-<p>查看创建好的表的数据结构：describe 表名；</p>
-</blockquote>
-<blockquote>
-<p>往数据表中添加数据记录：insert into 表名 values();</p>
-</blockquote>
-<p><em>如：insert into teacher values(1,’2’,NULL,3,’1999-4-14’)</em></p>
-<blockquote>
-<p>可以指定插入的字段</p>
-</blockquote>
-<p><em>如：insert into teacher (名字)  values (‘翁瀚’);</em></p>
-<blockquote>
-<p>删除记录：delete from 表名 where 字段名=xxxx;</p>
-</blockquote>
-<p><em>如：delete from student where 名字=’张美丽’;</em></p>
-<blockquote>
-<p>改记录数据：update 表名 set 字段名=xxx where 字段名=xxx;</p>
-</blockquote>
-<h2 id="如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’"><a href="#如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’" class="headerlink" title="如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;"></a><em>如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</em></h2><p><a href="https://www.runoob.com/mysql/mysql-data-types.html" target="_blank" rel="noopener">很多种数据类型</a></p>
-<p>double类型使用<br>实例：double(10,2)//长度为10，小数点2</p>
-<hr>
-<h3 id="mysql建表约束："><a href="#mysql建表约束：" class="headerlink" title="mysql建表约束："></a>mysql建表约束：</h3><p>1 主键约束 primary key</p>
-<blockquote>
-<p>它能够唯一确定表中的一条记录，也就是我们通过给某个字段添加约束，就可以使得该字段不重复且不为空</p>
-</blockquote>
-<p><em>如：</em><br><em>create table user</em><br><em>( id int(5) primary key,</em></p>
-<ul>
-<li>name varchar(20)*</li>
-<li>)*</li>
-<li>或者如：✔*</li>
-<li>create table user_1*</li>
-<li>(</li>
-<li>id int,*</li>
-<li>name varchar(20),*</li>
-<li>password varchar(20),*</li>
-<li>primary key(id)*</li>
-<li>)*</li>
-</ul>
-<p>2 联合主键 primary key()</p>
-<blockquote>
-<p>只要两个或者多个主键值加起来不重复就好</p>
-</blockquote>
-<p><em>如：</em><br><em>create table user_1</em><br><em>(</em></p>
-<ul>
-<li>id int,*</li>
-<li>name varchar(20),*</li>
-<li>password varchar(20),*</li>
-<li>primary key(id,name)*</li>
-<li>)*</li>
-</ul>
-<p>3 自增约束 auto_increment</p>
-<blockquote>
-<p>能自动增长某一个添加了自增约束的字段。若添加记录时没有添加该字段，则该字段自动生成且为表中最后一个记录记录同字段+1；</p>
-</blockquote>
-<p><em>create table use_2( id int primary key auto_increment,name varchar(20));</em></p>
-<blockquote>
-<p>当只添加名字时候，insert into use_2 (name) values(‘zhangshan’);<br>数据库会按顺序自动给生成id。此时id=1<br>再添加   insert into use_2 (name) values(‘zhangwei’);<br>数据库会按顺序自动生成id。此时id=2</p>
-</blockquote>
-<p>4 外键约束 foreign key,references</p>
-<blockquote>
-<p>涉及两个表：父表和子表 或者叫 主表和副表<br>a.主表中没有的数据值；在副表中是不可以使用的<br>b.主表中的记录一旦被副表引用，是不能被删除的</p>
-</blockquote>
-<p><em>主表：(被副表引用的字段要是主键）</em><br><em>create table class</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br><em>);</em></p>
-<p><em>副表（记得是references）</em><br><em>create table students</em><br><em>(</em><br>     <em>id int,</em><br>     <em>name varchar(20),</em><br>     <em>class_no int,</em><br>     <em>foreign key(class_no) references class(id)</em><br><em>);</em></p>
-<p>5 唯一约束</p>
-<blockquote>
-<p>约束修饰字段的值不可以重复，如果给两个字段添加唯一约束，那么这两个字段加起来不能重复（类似于联合主键）</p>
-</blockquote>
-<p><em>如：</em><br><em>create table user_5  *<br>*( *<br>*id int, *<br>*name  varchar(20), *<br>*unique(id) *<br>*); *<br>*或者如：</em><br><em>create table user_5</em><br><em>(</em><br><em>id int unique,</em><br><em>name  varchar(20)</em><br><em>);</em></p>
-<p>6 非空约束 not null</p>
-<blockquote>
-<p>修饰的字段不能为空</p>
-</blockquote>
-<p><em>如：(只有一种方式）</em><br><em>create table user_3</em><br><em>(</em></p>
-<ul>
-<li>id int,*</li>
-<li>varchar(20) not null*</li>
-<li>);*</li>
-</ul>
-<p>7 默认约束 default</p>
-<blockquote>
-<p>就是当我们插入字段值的时候，如果没有传值，就会使用默认值；但是传了值就不会使用默认值</p>
-</blockquote>
-<p><em>如：(只有一种方式）</em></p>
-<ul>
-<li>create table user_2*</li>
-<li>(*</li>
-<li>id int,*</li>
-<li>name varchar(10),*</li>
-<li>age int,*</li>
-<li>birth date default ‘1999-4-14’*</li>
-<li>);*</li>
-</ul>
-<hr>
-<blockquote>
-<p>创建表后添加主键约束：</p>
-</blockquote>
-<p><strong>第一种方式(使用add)alter table 表名 add primary key（字段名）；✔</strong><br><em>如：alter table student add primary key(名字);</em><br><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 primary key</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  primary key;</em></p>
-<p><strong>创建表后删除主键约束：alter table 表名 drop primary key;✔</strong><br><em>如：alter table student drop primary key;</em></p>
-<hr>
-<blockquote>
-<p>创建表后添加唯一约束：</p>
-</blockquote>
-<p><strong>第一种方式(使用add) alter table student add unique(字段名);✔</strong><br><em>如：alter table student add unique(学号);</em></p>
-<p><strong>第二种方式(使用modify)add table 表名 motify 字段名 类型名 unique;</strong><br><em>如：</em><br> <em>alter table student modify 学号 int(11)  unique;</em></p>
-<p><strong>创建表后删除主键约束：alter table 表名 drop index 字段名;✔</strong><br><em>如：alter table student drop index name;</em></p>
-<hr>
-<blockquote>
-<p>改变外键值<br>将外键的值设置为0，此时就是失效状态，命令：set foreign_key_checks = 0，这时就能删除数据了<br>删除之后，外键再设置为有效：</p>
-</blockquote>
+        <h2 id="1-建表"><a href="#1-建表" class="headerlink" title="1.建表"></a>1.建表</h2><p><strong>学生表</strong><br>学号 性名 性别 出生年月日 所在班级<br>create table students<br>(<br>sid int primary key,<br>sname varchar(20)  not null,<br>ssex varchar(2) not null,<br>sbirth date,<br>class varchar(20)<br>);</p>
+<p>** 课程表 **<br>课程号  课程名称 教师编号<br>create table course<br>(<br>cid int primary key,<br>cname varchar(20) not null,<br>tid int not null,<br>foreign key(tid)  references teachers(tid)<br>);</p>
+<p><strong>成绩表</strong><br>学号 课程号 成绩<br>create table score<br>(<br>sid int not null,<br>cid int not null,<br>degree decimal ,<br>foreign key(sid) references students(sid),<br>foreign key(cid) references course(cid)<br>);</p>
+<p><strong>教师表</strong><br>教师编号 教师名字 教师性别 出生年月日 职称 所在部门<br>create table teachers<br>(<br>tid int primary key,<br>tname varchar(20) not null,<br>tsex varchar(2) not null,<br>tbirth date,<br>professor varchar(20) not null,<br>department varchar(20) not null<br>);</p>
+<h2 id="2-添加数据"><a href="#2-添加数据" class="headerlink" title="2.添加数据"></a>2.添加数据</h2><p><strong>学生数据</strong><br>insert into students values(1,’古一’,’男’,’1999-4-1’,’一班’);<br>insert into students values(2,’古二’,’男’,’1999-4-2’,’一班’);<br>insert into students values(3,’古三’,’男’,’1998-4-1’,’一班’);<br>insert into students values(4,’古四’,’女’,’1998-4-2’,’二班’);<br>insert into students values(5,’古五’,’女’,’1997-4-1’,’二班’);<br>insert into students values(6,’古六’,’女’,’1997-4-2’,’二班’);<br>insert into students values(7,’古七’,’男’,’1996-4-1’,’三班’);<br>insert into students values(8,’古八’,’女’,’1996-4-2’,’三班’);<br>insert into students values(9,’王八’,’男’,’1995-4-1’,’三班’);</p>
+<p><strong>教师数据</strong><br>insert into teachers values(100,’吴祖军’,’男’,’1970-6-4’,’教授’,’语文系’);<br>insert into teachers values(101,’王婷’,’女’,’1979-5-23’,’教授’,’化学系’);<br>insert into teachers values(102,’牛语文’,’男’,’1964-9-14’,’辅导员’,’语文系’);<br>insert into teachers values(103,’陈化学’,’女’,’1987-3-4’,’助教,’化学系’);</p>
+<p><strong>课程表</strong><br>insert into course values(22,’大学语文’,’100’);<br>insert into course values(33,’大学化学’,’101’);<br>insert into course values(11,’高中语文’,’102’);<br>insert into course values(44,’高中语文’,’103’);</p>
+<p><strong>成绩表</strong><br>insert into score values(1,11,20);<br>insert into score values(2,22,30);<br>insert into score values(3,33,40);<br>insert into score values(4,44,80);<br>insert into score values(5,11,60);<br>insert into score values(6,22,70);<br>insert into score values(7,33,80);</p>
+<h2 id="3-查询练习"><a href="#3-查询练习" class="headerlink" title="3.查询练习"></a>3.查询练习</h2><p><strong>1.查询students表中所有记录<br>*</strong>（<em>**</em>:<strong><em>表示所有）</em></strong><br>select *from students;</p>
+<p><strong>2.查询students表中的所有记录的sname， ssex，class列</strong><br>select sname ,ssex,class from students;</p>
+<p><strong>3.查询教师所有的单位即不重复的department列 **<br>*</strong>（distinct:排除重复）***<br>select distinct(department) from teachers;</p>
+<p><strong>4.查询score表中成绩在50到80之间的所有记录</strong><br><strong><em>（between…and…:表示区间）</em></strong><br>select  * from score where degree between 50 and 80;<br><strong><em>(运算符表示区间,and）</em></strong><br>或者select *fron score where degree&gt;=50 and degree &lt;=80;</p>
+<p><strong>5.查询score表中成绩为60，70，80的记录 **<br>*</strong>（同一个字段的单独几个查询用in）***<br>select *from score where degree in(60,70,80);</p>
+<p><strong>6.查询students表中1班或性别为女的同学记录 **<br>*</strong>（不同字段单独关键字查询用[或：or，和：and]）***<br>select *from students where class=’1班’ or ssex=’女’;</p>
+<p><strong>7.以学号降序查询students表中的记录</strong><br><strong><em>（order by 字段[升序：asc；降序desc]）</em></strong><br>select *from students  order by  sid asc;</p>
+<p><strong>8.以cid升序、degree降序查询score表中记录 **<br>*</strong>(这里与用，不是and）<strong>*<br>*</strong>这里的话，会先cid升序排序后，再在相同的cid里面对degree进行降序***<br>select *from score order by cno asc ,degree dasc;</p>
+<p><strong>9.查询1班的学生人数 **<br>*</strong>（统计count,放在(  * <strong>*  *</strong>)与from前面,记得加()）<em>**<br>select count(</em>)  from students where class=’1班’;</p>
+<p><strong>10.查询score表中最高分的学生学号和课程号</strong><br><strong><em>（最大值用max(字段)）</em></strong><br>select  sid,cid from score where degree=(select max(degree) from score);<br><strong>*（先进行排序，再用limit进行读取）</strong><br>limit第一个数字是从哪个位置开始读取(位置类似数组，第一个在位0），第二个数字是读取多少个<br>select sid,cid from score order by degree desc  limit 0,1;</p>
+<p><strong>11.查询每门课的平均成绩，并把课程号打印出来（计算平均值avg，操作并显示组内成员group by）</strong><br>select cid,avg(degree) from score group by cid;</p>
+<p><strong>12.查询score表中至少有两名学生学习的，并且课程号是2开头的课程的平均成绩和课程号</strong><br><strong><em>（having:达到(有)什么条件，字段 like :字段达到某一模糊条件，’3%‘表示条件是3开头后面任意，一定要单引号！）</em></strong><br>select  avg(degree),cid from score group by cid having count(cid)&gt;=2 and cid like ‘3%’;</p>
+<p><strong>14.查询在成绩表中有成绩的学生的sname 、cid和degree列，也就是多表查询</strong><br><strong><em>（要对一个表中含有另一个表里面相同的某个字段数据的记录操作，就用 表名.字段名=表名.字段名判断并操作。✳一定要有范围约定：表名.字段名=表名.字段，不然数据没意义）</em></strong><br>select sname,cid,degree from students,score where students.sid=score.sid;</p>
+<p><strong>15.查询所有学生的sname、cname和degree列，也就是三表查询</strong><br><strong><em>（进一步解释一下这里的where，我觉得是当一个表中的记录的该字段和另一个表中记录的该字段一样时才打印出来。✳一定要有范围约定：表名.字段名=表名.字段，不然数据没意义）</em></strong><br>select sname,cname,degree from students,course,score where students.sid=score.sid and course.cid=score.cid;</p>
+<p><strong>16.查询一班学生每门课的平均分</strong></p>
+<p><strong><em>思路</em></strong><br><strong><em>a.先找出一班的同学具有的并且记录在score中也有字段sid，因为最终还是要在score查找</em></strong><br>select sid from students where class=’一班’;<br><strong><em>b.然后在score表中找出这些学号的记录</em></strong><br>select <em>from score where score in(select sid from students where class=’一班’）；<br>**</em>c.最后找自己想要的东西***<br>select cid,avg(degree) from score where sid in(select sid from students  where class=’一班’) group by cid;</p>
+<p><strong>17.查询11课程的成绩高于1号同学11课程的所有同学记录</strong><br>select * from score where cid=11 and degree&gt;(select degree from score where sid=1 and cid=11);</p>
+<p><strong>18.查询高于学号为“2”的‘’课号为“22”的成绩的所有记录</strong><br>select * from score where degree&gt;(select degree from score where sid=2 and cid=22);</p>
+<p><strong>19.查询和学号为1、3的同学同年出生的所有学生的sid、sname、sbirth列</strong><br><strong><em>（单独拿出date类型数据的年份：year（date类型的字段））</em></strong><br>select sid,sname,sbirth from students where  year(sbirth) in (select year(sbirth) from students where sid in(1,3));</p>
+<p><strong>20.查询“吴祖军”教师任课学生的成绩</strong><br>select *from score where cid=(select cid from course where tid=(select tid from teachers where tname=’吴祖军’));</p>
+<p><strong>21.查询选修某课程的同学人数不少于两人的老师名字</strong><br>select tname from teachers where tid in(select tid from course where cid in(select cid from score group by cid  having count(cid)&gt;=2));</p>
+<p><strong>22.查询”吴祖军“教师任课的学生成绩</strong><br>select degree from score where cid=(select cid from course where tid=(select tid from teachers where tname=”吴祖军”));</p>
+<p><strong>23.查询选修某课程的同学人数不少于两人的教师姓名</strong><br>select tname from teachers where tid in(select tid from course where cid in(select cid from score group by cid having count(cid)&gt;=2));</p>
+<p><strong>24.查询存在有20分以上的课程cid列</strong><br><strong><em>（为了不重复cid特别加了group by cid）</em></strong><br>select cid from score where degree&gt;=20 group by cid;</p>
+<p><strong>25.查询语文系教师所教课程的成绩表</strong><br><strong><em>（自己加了order by sid asc让它能排序美观）</em></strong><br>select * from score where cid in(select cid from course where tid in(select tid from teachers where department=’语文系’ )) order by sid asc;</p>
+<p><strong>26.查询“语文系”中，“化学系”没有的职称的对应的记录 加上 “化学系”中，“语文系”没有的职称的对应的记录</strong><br><strong><em>（查询字段中不等于某些数值的记录 not in()，如果是查询字段中不等于某一个值就是 !=)</em></strong><br><strong><em>（合并输出：union，合并n个就加n-1个union）</em></strong><br>select * from teachers where department=’语文系’ and professor not in(select professor from teachers where department=’化学系’)<br>union<br>select * from teachers where department=’化学系’ and professor not in(select professor from teachers where department=’语文系’);</p>
+<p><strong>27.查询选修编号为11课程且成绩不低于任一选修编号为22课程的同学的cid，sid，degree。并且degree以降序的方式排序</strong><br><strong><em>（其中任一记录：any）</em></strong><br>select cid,sid,degree from score where cid=11 and degree &gt; any(select degree from score where cid=22);</p>
+<p><strong>28.查询选修编号为11课程且成绩不低于所有选修编号为22课程的同学的cid，sid，degree。并且degree以降序的方式排序</strong><br><strong><em>(其中全部记录：all）</em></strong><br>select cid,sid,degree from score where cid=11 and degree&gt; all(select degree from score where cid=22);</p>
+<p><strong>29.查询所有教师和同学的name，sex，birthday列</strong><br>一开始：<br>select tname,tsex,tbirth from teachers<br>union<br>select sname,ssex,sbirth from students;<br>但是<br>这样的话列名就是tname，tsex，birth(显示的是第一列的列名）。但是需要列名是name，sex，birth，所以<br><strong><em>（用别名 as）</em></strong><br>select tname as name,tsex as sex,tbirth as birth from teachers<br>union<br>select sname,ssex,sbirth from students;（下面的自动也变为name，sex，birth不用用as）<br><strong><em>（✳union相当于并集，就是不会重复地输出数据）</em></strong></p>
+<p><strong>30.查询成绩比该课程平均成绩低的同学记录</strong><br><strong><em>(复制表数据做查询条件）</em></strong><br>把select degree from score 叫做表a<br>把 select avg(degree) from score group by cid 叫做表b<br>然后（要去掉表b的group by cid）<br>select * from score  a where degree&lt;(select avg(degree) from score b where a.cid=b.cid) ;</p>
+<p><strong>31.查询所有在分数表中有成绩的教师的tname和department</strong><br>select tname,department from teachers where tid in(select tid from course where cid in(select cid from score group by cid));</p>
+<p><strong>32.查询至少有两名男生的班级名class</strong><br><strong><em>（where+条件 一定放在 having+条件之前）</em></strong><br>select class from students where ssex=’男’ group by class having count(class)&gt;=2;</p>
+<p><strong>33.查询students表中不姓古的同学记录</strong><br><strong><em>（字段  not ike :字段达到某一模糊条件，’古%‘表示条件是3开头后面任意，一定要单引号！）</em></strong><br>select * from students where sname not like ‘古%’;</p>
+<p><strong>34.查询students每个学生的姓名和年龄</strong><br><strong><em>（得到当前年份：select year(now())，可以直接在查询中做运算把数值打出来）</em></strong><br>select sname,year(now())-year(sbirth) as age from students;</p>
+<p><strong>35.查询students表中最大和最小的sbirth日期值</strong><br>select max(sbirth) as ‘最小’ ,min(sbirth) as ‘最大’ from students;</p>
+<p><strong>36.以年龄从小到大的顺序查询students表中全部记录</strong><br>select  * from students order by sbirth asc;</p>
+<p><strong>37.查询男教师及其所上的课程</strong><br>select cname from course where tid in(select tid from teachers where tsex=’男’);</p>
+<p><strong>38.查询最高分同学的sid,cid和degree</strong><br>select sid,cid,degree from score where degree=(select max(degree) from score) ;</p>
+<p><strong>39.查询和古一同性别的除了古一之外所有同学的sname</strong><br>select * from students where ssex=(select ssex from students where sname=’古一’)  and sname !=’古一’;</p>
+<p><strong>40.查询和古一同性别和同班的除了古一之外所有同学的sname</strong><br>（n个条件就加n-1个and或者or)<br>select * from students where ssex=(select ssex from students where sname=’古一’)  and sname !=’古一’ and  class=(select class from students where sname=’古一’) ;</p>
+<p><strong>41.查询选修大学语文课程的男同学的成绩表</strong><br>select * from score where cid=(select cid from course where cname=’大学语文’) and sid in(select sid from students where ssex=’男’);</p>
+<p><strong>42.新建一个等级表</strong><br>create table grade<br>(<br>low int,<br>upp int,<br>grade varchar(1) unique<br>);<br>insert into grade values(90,100,’A’);<br>insert into grade values(80,89,’B’);<br>insert into grade values(70,79,’C’);<br>insert into grade values(60,69,’D’);<br>insert into grade values(0,59,’E’);</p>
+<p><strong>查询所有同学的sid，cid，grade列</strong><br><strong><em>（多表联合查询可以用其中一个表和另外的表内的列直接比较）</em></strong><br>select sid,cid,grade from score,grade where degree between low and upp;</p>
 
     </article>
     <!-- license  -->
@@ -531,16 +455,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" title= "数据库三大设计范式">
-                    <div class="nextTitle">数据库三大设计范式</div>
+                <a href= "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" title= "SQL四种连接查询">
+                    <div class="nextTitle">SQL四种连接查询</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/01/MySQL%E7%AE%80%E4%BB%8B/" title= "MySQL 简介">
-                    <div class="prevTitle">MySQL 简介</div>
+                <a href= "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" title= "数据库三大设计范式">
+                    <div class="prevTitle">数据库三大设计范式</div>
                 </a>
             
         </li>
@@ -648,7 +572,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如：update-student-set-名字-‘翁瀚’-where-名字-‘张美丽’"><span class="toc-number">1.</span> <span class="toc-text">如：update student set 名字 = ‘翁瀚’ where 名字 = ‘张美丽’;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql建表约束："><span class="toc-number">1.1.</span> <span class="toc-text">mysql建表约束：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-建表"><span class="toc-number">1.</span> <span class="toc-text">1.建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-添加数据"><span class="toc-number">2.</span> <span class="toc-text">2.添加数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-查询练习"><span class="toc-number">3.</span> <span class="toc-text">3.查询练习</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -740,9 +664,44 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -772,12 +731,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >SQL四种连接查询</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >MySQL事务</a>
         </li>
     
     
@@ -814,6 +773,20 @@ top:50vh;
     
         </ul>
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
@@ -834,6 +807,25 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/14/QT_day1.3/" >QT day1.3</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >查询练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
         </li>
     
     

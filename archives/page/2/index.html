@@ -346,23 +346,41 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >
+        <a class="abstract-title" href = "/2019/12/11/QT%20day1.1/" >
             
-                <span>MySQL事务</span>
+                <span>QT day1.1</span>
         </a>
         <div class="abstract-content">
-            问题mysql 中，事务其实就是一个最小的不可分割的工作单元。事务能保证一个业务的完整性。
+            学习目的：新建一个QT项目，并了解各文件中的信息先建立一个没有ui界面的QWidget工程
+1. 在.pro文件中
+模块
 
-比如银行转账a-&gt;-100update user set money=money-100 where name=’a’;b-&gt;+100update user set money=money+100 where name=’b’;
+QT       += core gui
 
+高于4版本，添加QT+=widgets，为了兼容Qt4
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-但是如果是一次性输入，即多条sql语句。update user set money=money-100 where name=’a’;update user set money=money+100 where name=’b’;可能出现有一条语句执行了...
+应用程序的名字
+
+TARGET = GSL_Firstapp
+
+指定makefile的类型：app
+
+TEMPLATE = app
+
+源文件 .cpp文件
+
+SOURCES += main.cpp       mywidget.cpp
+
+头文件 .h文件
+
+HEADER...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/11</span>
             </div>
             <!-- tags  -->
             
@@ -375,151 +393,50 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >
+        <a class="abstract-title" href = "/2019/12/10/MarkDown/" >
             
-                <span>SQL四种连接查询</span>
+                <span>Markdown</span>
         </a>
         <div class="abstract-content">
             
-1.内连接inner join 或者 join
+- - -title: xxx- - -
 
+标题(用英文符号)
 
-2.外连接a.左连接lefe join 或者 left outer joinb.右连接right join 或者 right outer joinc.完全连接full join 或者 full outer join
+#
 
+几个#号就是几级标题
 
-先创建两个表person表create table person(id int,name varchar(20),cardID int);card表create table card(id int,name varchar(20));
+负号+空格 （如· ）
 
-insert into card values(1,’饭卡’),(2,’建行卡’)...
+无序列表
+
+阿拉伯数字+空格 （如1. ）
+
+ 有序列表(用英文符号)
+
+![xxx(在图片没有显示的时候，就会显示这个xxx)]（图片地址）
+
+插入图片方法(用英文符号)
+
+[网址信息，点击可进]（网址）
+
+插入超链接(用英文符号)
+
+左右两边各两个*
+
+加粗
+
+左右两边各一个*
+
+斜体
+
+&lt; font face=”什么字体” color=“颜色” size=“字体大小” &gt;xxxx（内容）&lt; font &gt;&lt; /center &gt;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >
-            
-                <span>查询练习</span>
-        </a>
-        <div class="abstract-content">
-            1.建表学生表学号 性名 性别 出生年月日 所在班级create table students(sid int primary key,sname varchar(20)  not null,ssex varchar(2) not null,sbirth date,class varchar(20));
-** 课程表 **课程号  课程名称 教师编号create table course(cid int primary key,cname varchar(20) not null,tid int not null,foreign key(tid)  references teachers...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >
-            
-                <span>数据库三大设计范式</span>
-        </a>
-        <div class="abstract-content">
-            1.第一范式
-数据表中的所有字段都是不可拆分的原子
-
-
-范式，设计的越详细，对于某些实际操作可能更好，但是不一定都是好处
-
-例如：create table people(id int,name varchar(10),address varchar(20));
-
-在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city varchar...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >
-            
-                <span>表格数据库操作命令</span>
-        </a>
-        <div class="abstract-content">
-            MySQL对大小写不敏感
-
-
-登陆数据库：mysql -uroot -p密码；退出数据库服务器命令：exit；
-
-
-
-1.show databases;       查看现有数据库2.create database  名字;  新建数据
-
-
-
-使用数据库（后来才能查询等）：use 数据库名字;查询数据库中所有表格：show tables；查询表格：select * from  表名;【可以用where加条件如：select * from student where 学号=19;】
-
-
-create table 表名(属性名 数据类型 [约束条件],属性名 数据类型 [约束条件],属性名 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E7%AE%80%E4%BB%8B/" >
-            
-                <span>MySQL 简介</span>
-        </a>
-        <div class="abstract-content">
-            1 MySQL是关系型数据库管理系统(存储方式是一张二维表）2 具有体积小，速度快，成本低，可移植的特点3 表是关系型数据库的基本存储单位4 表里面一行称为一个记录。即使一个对象的一组数据5 表里面的一列称为一个字段。即表中所描述的对象的一个属性6 数据完整性：
-
-实体完整性（行上实施）
-域完整性（列上实施）
-参照完整性（表上实施）
-
-7.where和having区别：
-
-where是一个约束声明,使用where来约束来自数据库的数据;where是在结果返回之前起作用的;where中不能使用聚合函数。
-
-having是一个过滤声明;在查询返回结果集以后，对查询结果进行的过滤操作;在hav...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/10</span>
             </div>
             <!-- tags  -->
             
@@ -527,6 +444,10 @@ having是一个过滤声明;在查询返回结果集以后，对查询结果进�
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/">&amp;#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->

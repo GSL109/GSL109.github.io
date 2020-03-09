@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>数据库三大设计范式 · GSL&#39;s Blog</title>
+    <title>GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,8 +77,6 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -203,23 +201,14 @@
 </head>
 
     
-        <body class="post-body">
+        <body class="home-body">
     
     
-<header class="header">
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >GSL&#39;s Blog.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">数据库三大设计范式</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>GSL's Blog.</a>
 </header>
@@ -238,17 +227,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 404页  -->
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            数据库三大设计范式
-            <!-- 404 -->
+            GSL's Blog.
+            <!-- 文章页  -->
             
         </h1>
         <!-- 副标题 -->
@@ -256,43 +245,12 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-            <!-- 404 -->
+                JUST DO IT
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">420</span>Reading time: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/01</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -393,74 +351,201 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h3 id="1-第一范式"><a href="#1-第一范式" class="headerlink" title="1.第一范式"></a>1.第一范式</h3><blockquote>
-<p>数据表中的所有字段都是不可拆分的原子</p>
-</blockquote>
-<blockquote>
-<p>范式，设计的越详细，对于某些实际操作可能更好，但是不一定都是好处</p>
-</blockquote>
-<p><em>例如：create table people</em><br><em>(</em><br><em>id int,</em><br><em>name varchar(10),</em><br><em>address varchar(20)</em><br><em>);</em></p>
-<blockquote>
-<p>在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式<br><em>可改为：create table people</em><br><em>(</em><br><em>id int,</em><br><em>name varchar(10),</em><br><em>country varhar(10),</em><br><em>province varchar(10),</em><br><em>city varchar(10),</em><br><em>detail varchar(10)</em><br><em>);</em></p>
-</blockquote>
-<blockquote>
-<p>把地址拆分为国，省，城市，具体地址，才满足第一范式</p>
-</blockquote>
-<h3 id="2-第二范式"><a href="#2-第二范式" class="headerlink" title="2.第二范式"></a>2.第二范式</h3><blockquote>
-<p>必须是满足第一范式的前提下，第二范式要求，除主键外的每一列都必须完全依赖于主键。<br>这种情况不满足第二范式：如果出现不完全依赖，只可能发生在联合主键的情况下。</p>
-</blockquote>
-<p><em>例如：create table myorder</em><br><em>(</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>product_name varchar(20),</em><br><em>customer_name varchar(20)</em><br><em>primary key(product_id,customer_id)</em><br><em>);</em></p>
-<blockquote>
-<p>很显然product_name与product_id有依赖关系，customer_name和customer_id也有依赖关系。<br>这样不满足第二范式</p>
-</blockquote>
-<p><em>所以要改为：</em><br><em>create table id</em><br><em>(</em><br><em>order id primary key,</em><br><em>product_id int,</em><br><em>customer_id int</em><br><em>);</em></p>
-<p><em>create table product</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br><em>);</em></p>
-<p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20)</em><br>*);</p>
-<h3 id="3-第三范式"><a href="#3-第三范式" class="headerlink" title="3.第三范式"></a>3.第三范式</h3><blockquote>
-<p>必须满足第二范式，除开主键列的其他列之间不能有传递依赖关系。</p>
-</blockquote>
-<p><em>例如：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int,</em><br><em>customer_phone varchar(15)</em><br><em>)；</em></p>
-<blockquote>
-<p>这样customer_phone不仅与主键order_id有关，还与customer_id有关，这样不满足第三范式</p>
-</blockquote>
-<p><em>应改为：</em><br><em>create table myorder</em><br><em>(</em><br><em>order_id int primary key,</em><br><em>product_id int,</em><br><em>customer_id int</em><br><em>);</em></p>
-<p><em>create table customer</em><br><em>(</em><br><em>id int primary key,</em><br><em>name varchar(20),</em><br><em>customer_phone varchar(15)</em><br><em>);</em></p>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/11/QT%20day1.1/" >
+            
+                <span>QT day1.1</span>
+        </a>
+        <div class="abstract-content">
+            学习目的：新建一个QT项目，并了解各文件中的信息先建立一个没有ui界面的QWidget工程
+1. 在.pro文件中
+模块
 
+QT       += core gui
+
+高于4版本，添加QT+=widgets，为了兼容Qt4
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+应用程序的名字
+
+TARGET = GSL_Firstapp
+
+指定makefile的类型：app
+
+TEMPLATE = app
+
+源文件 .cpp文件
+
+SOURCES += main.cpp       mywidget.cpp
+
+头文件 .h文件
+
+HEADER...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/11</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
     </article>
-    <!-- license  -->
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/10/MarkDown/" >
+            
+                <span>Markdown</span>
+        </a>
+        <div class="abstract-content">
+            
+- - -title: xxx- - -
+
+标题(用英文符号)
+
+#
+
+几个#号就是几级标题
+
+负号+空格 （如· ）
+
+无序列表
+
+阿拉伯数字+空格 （如1. ）
+
+ 有序列表(用英文符号)
+
+![xxx(在图片没有显示的时候，就会显示这个xxx)]（图片地址）
+
+插入图片方法(用英文符号)
+
+[网址信息，点击可进]（网址）
+
+插入超链接(用英文符号)
+
+左右两边各两个*
+
+加粗
+
+左右两边各一个*
+
+斜体
+
+&lt; font face=”什么字体” color=“颜色” size=“字体大小” &gt;xxxx（内容）&lt; font &gt;&lt; /center &gt;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" title= "表格数据库操作命令">
-                    <div class="prevTitle">表格数据库操作命令</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
     
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" alt="avatar" src= https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575575633915&di=66f05be05b4cee67edad5e134dcfc4f0&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20191105%2F4e5981c392404a7f84360e15f4f502b8.jpeg >
+    <div class="profile-name">GSL</div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+    
+        
+            
+                <a href="https://github.com/GSL109/GSL109.github.io" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+        <div class="friends">
+            <div>FRIENDS</div>
+            
+                
+                    <span>
+                        <a href= //www.baidu.com target="_black">friendA</a>
+                    </span>
+                
+            
+                
+                    <span>
+                        <a href= //www.google.com target="_black">friendB</a>
+                    </span>
+                
+            
+                
+            
+        </div>
+    
+    
+        <div class="about-me">
+            <a href = "/about" >ABOUT ME</a>
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">
@@ -532,24 +617,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-第一范式"><span class="toc-number">1.</span> <span class="toc-text">1.第一范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-第二范式"><span class="toc-number">2.</span> <span class="toc-text">2.第二范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-第三范式"><span class="toc-number">3.</span> <span class="toc-text">3.第三范式</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -640,9 +707,44 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -672,12 +774,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >SQL四种连接查询</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >MySQL事务</a>
         </li>
     
     
@@ -714,6 +816,20 @@ top:50vh;
     
         </ul>
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
@@ -734,6 +850,25 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/14/QT_day1.3/" >QT day1.3</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >查询练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
         </li>
     
     
@@ -825,8 +960,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

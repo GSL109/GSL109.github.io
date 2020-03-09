@@ -346,7 +346,92 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >
+        <a class="abstract-title" href = "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >
+            
+                <span>MySQL事务</span>
+        </a>
+        <div class="abstract-content">
+            问题mysql 中，事务其实就是一个最小的不可分割的工作单元。事务能保证一个业务的完整性。
+
+比如银行转账a-&gt;-100update user set money=money-100 where name=’a’;b-&gt;+100update user set money=money+100 where name=’b’;
+
+
+
+但是如果是一次性输入，即多条sql语句。update user set money=money-100 where name=’a’;update user set money=money+100 where name=’b’;可能出现有一条语句执行了...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >
+            
+                <span>SQL四种连接查询</span>
+        </a>
+        <div class="abstract-content">
+            
+1.内连接inner join 或者 join
+
+
+2.外连接a.左连接lefe join 或者 left outer joinb.右连接right join 或者 right outer joinc.完全连接full join 或者 full outer join
+
+
+先创建两个表person表create table person(id int,name varchar(20),cardID int);card表create table card(id int,name varchar(20));
+
+insert into card values(1,’饭卡’),(2,’建行卡’)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >
+            
+                <span>查询练习</span>
+        </a>
+        <div class="abstract-content">
+            1.建表学生表学号 性名 性别 出生年月日 所在班级create table students(sid int primary key,sname varchar(20)  not null,ssex varchar(2) not null,sbirth date,class varchar(20));
+** 课程表 **课程号  课程名称 教师编号create table course(cid int primary key,cname varchar(20) not null,tid int not null,foreign key(tid)  references teachers...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >
             
                 <span>数据库三大设计范式</span>
         </a>
@@ -377,7 +462,7 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >
+        <a class="abstract-title" href = "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >
             
                 <span>表格数据库操作命令</span>
         </a>
@@ -425,7 +510,11 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
 域完整性（列上实施）
 参照完整性（表上实施）
 
+7.where和having区别：
 
+where是一个约束声明,使用where来约束来自数据库的数据;where是在结果返回之前起作用的;where中不能使用聚合函数。
+
+having是一个过滤声明;在查询返回结果集以后，对查询结果进行的过滤操作;在hav...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -602,9 +691,44 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -634,12 +758,12 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >SQL四种连接查询</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >MySQL事务</a>
         </li>
     
     
@@ -676,6 +800,20 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
     
         </ul>
     
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >数据库三大设计范式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
     
@@ -696,6 +834,25 @@ create table 表名(属性名 数据类型 [约束条件],属性名 数据类型
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/12/14/QT_day1.3/" >QT day1.3</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >查询练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >表格数据库操作命令</a>
         </li>
     
     

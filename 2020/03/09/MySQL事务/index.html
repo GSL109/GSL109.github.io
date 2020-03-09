@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>GSL&#39;s Blog</title>
+    <title>MySQL事务 · GSL&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >GSL&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">MySQL事务</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>GSL's Blog.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            MySQL事务
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.5k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/09</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,196 +393,209 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E4%BA%8B%E5%8A%A1/" >
-            
-                <span>MySQL事务</span>
-        </a>
-        <div class="abstract-content">
-            问题mysql 中，事务其实就是一个最小的不可分割的工作单元。事务能保证一个业务的完整性。
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><strong>mysql 中，事务其实就是一个最小的不可分割的工作单元。事务能保证一个业务的完整性。</strong></p>
+<blockquote>
+<p>比如银行转账<br>a-&gt;-100<br>update user set money=money-100 where name=’a’;<br>b-&gt;+100<br>update user set money=money+100 where name=’b’;</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>但是如果是一次性输入，即多条sql语句。<br>update user set money=money-100 where name=’a’;<br>update user set money=money+100 where name=’b’;<br><strong>可能出现有一条语句执行了，但是另外一条没有执行成功，就会出现数据前后不一致。</strong><br>这就麻烦了!</p>
+</blockquote>
+<hr>
+<h2 id="mysql如何控制事务"><a href="#mysql如何控制事务" class="headerlink" title="mysql如何控制事务"></a>mysql如何控制事务</h2><p><strong>1.mysql默认是开启事务的（自动提交）。关闭则用 set @@autocommit=0;</strong></p>
+<table>
+<thead>
+<tr>
+<th>@@autocommit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>**2.默认事务开启的作用是：当我们去执行一个sql语句的时候，效果会立即体现，且不能回滚</p>
+<p>先建好表<br>create database bank;<br>create table user<br>(<br>id int primary key,<br>name varchar(20),<br>money int<br>);<br>insert into user values(1,’a’,1000);</p>
+<blockquote>
+<p><strong>事务回滚：撤销所有在输入commit之后输入的sql语句执行效果</strong><br><strong>rollback;</strong><br>当默认事务开启时，即使用来rollback语句，还是不能回滚。<br>当我们关闭默认事务的时候，输入sql语句，其实只是在临时表中执行，真实表中还未执行。此时roll back可以回滚，所以必须在sql语句输出后，输入commit手动提交数据，才能使得语句真正实行成功,即使rollback也不能回滚了；</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>因此回到银行转账的那个例子<br>要解决:但是如果有一条语句执行了，但是另外一条没有执行成功，就会出现数据前后不一致。<br>应该设置不要自动提交：set @@autocommit，这样的话有什么错误，就可以rollback，即可以反悔</p>
+</blockquote>
+<hr>
+<hr>
+<blockquote>
+<p><strong>begin 或者 start transaction：都可以帮我们手动开启一个事务</strong><br><strong>在@@autocommit=1时，rollback无效。我们可以手动开启一个事务，即begin或者start transaction之后，再输入语句。这时候，begin或者start transaction之后的的语句就可以回滚tollback了。想把语句真正落实到真实表上记得commit；</strong></p>
+</blockquote>
+<hr>
+<hr>
+<blockquote>
+<p><strong>事务的四大特征</strong><br>A  原子性：事务是最小的单位，不可以分割<br>C 一致性：同一事务中sql语句必须保证同时成功或者同时失败<br>I   隔离性：事务1 和事务2 之间是有隔离性的<br>D 持久性：事务一旦结束(commit,rollback)就不可以返回</p>
+</blockquote>
+<blockquote>
+<p><strong>事务开启:</strong><br>1 修改主动提交：set  @@autocommit = 0;<br>2 begin;<br>3 start transection;</p>
+</blockquote>
+<blockquote>
+<p><strong>事务提交：commit;</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>事务手动回滚：rollback;</strong></p>
+</blockquote>
+<hr>
+<hr>
+<p><strong>如何查看系统隔离级别：</strong></p>
+<blockquote>
+<p>mysql 8.0:<br>1.系统级别<br>select @@global.transaction_isolation;<br>2.会话级别<br>select @@transaction_isolation;</p>
+</blockquote>
+<blockquote>
+<p><strong>mysql 5.x:</strong><br><strong>1.系统级别</strong><br><strong>select @@global.tx_isolation;</strong><br><strong>2.会话级别</strong><br><strong>select @@tx_isolation;</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>如何修改系统隔离级别：</strong><br>set global tx_isolation level xxxx(下面四种其中一种）;</p>
+</blockquote>
+<blockquote>
+<p><strong>事务的隔离性（四种）：</strong><br>1 read uncommitted;  读未提交的<br>2 read committed;      读已提交的<br>3 repeatable read;              可以重复读<br>4 serializable;             串行化</p>
+</blockquote>
+<p><strong>read uncommitted隔离级别:</strong><br>如果有事务a，事务b<br>a事务对数据进行操作，在操作过程中，事务未被提交，但是b可以看见a操作的结果。<br>例如：<br>小明在淘宝店买东西<br>insert into user values(4,’小明’,1000);<br>insert into user values(5,’淘宝’,1000);<br>小明操作（开启一个窗口操作数据库）：<br>start transaction;<br>update user set money=money-800 where name=’小明’;<br>update user set money=money+800 where name=’淘宝’;<br>淘宝店操作（开启另一个窗口操作数据库）：<br>select * from user;<br>发现真的多了八百块钱。晚上去消费了一千八百块，准备转账时<br>update user set money=money-1800 where  name=’淘宝’;<br>发现钱不够。因为小明在淘宝店查询完之后，旧rollbak了。</p>
+<blockquote>
+<p><strong>从上述案例可以知道：</strong><br><strong>如果两个不同地方（窗口），都在进行操作，如果事务a开启之后，它的事务可以被其他事务读取到，这样就会出现脏读</strong><br><strong>脏读：一个事务读到了另一个事务没有提交的数据，就叫脏读。</strong><br><strong>实际开发不允许脏读。</strong></p>
+</blockquote>
+<hr>
+<p><strong>read committed隔离级别:</strong><br><strong>这种情况下，不会出现脏读，但是还是会出现问题：</strong><br><strong>读取同一个表的数据，会发现间隔一段时间后出现前后数据不一致（因为另一个窗口可能有人刚好在操作这个表并结束了一个事物），这种现象叫做 不可重复读现象。</strong></p>
+<hr>
+<p><strong>repeatable read隔离级别:</strong><br>例如：<br>两个公司职员：王尼玛和张全蛋<br>张全蛋（一个窗口）:<br>start transaction;</p>
+<p>王尼玛（另一个窗口）<br>start transaction;</p>
+<p>张全蛋：<br>insert into user values(6,’d’,1000);<br>commit;</p>
+<p>王尼玛：<br>select * from user;</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>money</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a</td>
+<td>900</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>c</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>小明</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>淘宝</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<p>没看到6号，但是insert into user values(6,’d’,1000);却出现错误：<br>ERROR 1062 (23000): Duplicate entry ‘6’ for key ‘PRIMARY’（6号已经存在）</p>
+<blockquote>
+<p><strong>这种现象就叫幻读；</strong><br><strong>事务a和事务b同时操作一张表，事务a提交的数据，也不能被事务b读到，就会造成幻读。</strong></p>
+</blockquote>
+<hr>
+<p><strong>serializable隔离级别：</strong><br><strong>不会出现幻读情况。</strong>即：<br>例如：<br>两个公司职员：王尼玛和张全蛋<br>张全蛋（一个窗口）:<br>start transaction;</p>
+<p>王尼玛（另一个窗口）<br>start transaction;</p>
+<p>张全蛋：<br>insert into user values(7,’f’,1000);<br>commit;</p>
+<p>王尼玛：<br>select * from user;</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>money</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>a</td>
+<td>900</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>c</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>小明</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>淘宝</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>6</td>
+<td>d</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>7</td>
+<td>f</td>
+<td>1000</td>
+</tr>
+</tbody></table>
+<p>不会出现幻读；</p>
+<p>张全蛋：<br>start transaction;<br>insert into user values(8,’g’,1000);<br><strong>会出现卡顿，就是不能执行下去，直到另一个事务（直到王尼玛）结束事务；</strong></p>
+<blockquote>
+<p><strong>从上面的现象：</strong><br><strong>当user表被另一个事务操作的时候，其他事务的写操作是不可以进行的。此时，进入排队状态（串行化），直到王尼玛那边的事务结束之后，张全蛋的写入操作才能执行。但是等待时间长了会出现等待超时。</strong></p>
+</blockquote>
+<p><strong>串行化的性能特别差！</strong></p>
+<p><strong>read uncommitted&gt;read committed&gt;repeatable read&gt;serializable</strong><br><strong>隔离等级越高，性能越差</strong></p>
+<p><strong>mysql默认的是 repeatable read；*</strong></p>
 
-比如银行转账a-&gt;-100update user set money=money-100 where name=’a’;b-&gt;+100update user set money=money+100 where name=’b’;
-
-
-
-但是如果是一次性输入，即多条sql语句。update user set money=money-100 where name=’a’;update user set money=money+100 where name=’b’;可能出现有一条语句执行了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" >
-            
-                <span>SQL四种连接查询</span>
-        </a>
-        <div class="abstract-content">
-            
-1.内连接inner join 或者 join
-
-
-2.外连接a.左连接lefe join 或者 left outer joinb.右连接right join 或者 right outer joinc.完全连接full join 或者 full outer join
-
-
-先创建两个表person表create table person(id int,name varchar(20),cardID int);card表create table card(id int,name varchar(20));
-
-insert into card values(1,’饭卡’),(2,’建行卡’)...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/MySQL%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0/" >
-            
-                <span>查询练习</span>
-        </a>
-        <div class="abstract-content">
-            1.建表学生表学号 性名 性别 出生年月日 所在班级create table students(sid int primary key,sname varchar(20)  not null,ssex varchar(2) not null,sbirth date,class varchar(20));
-** 课程表 **课程号  课程名称 教师编号create table course(cid int primary key,cname varchar(20) not null,tid int not null,foreign key(tid)  references teachers...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E5%A4%A7%E8%AE%BE%E8%AE%A1%E8%8C%83%E5%BC%8F/" >
-            
-                <span>数据库三大设计范式</span>
-        </a>
-        <div class="abstract-content">
-            1.第一范式
-数据表中的所有字段都是不可拆分的原子
-
-
-范式，设计的越详细，对于某些实际操作可能更好，但是不一定都是好处
-
-例如：create table people(id int,name varchar(10),address varchar(20));
-
-在这里添加的地址可能是中国广东省中山市三乡镇xxxxx。但是地址可以细分为中国，广东省，中山是，三乡镇，xxx。所以不满足第一范式可改为：create table people(id int,name varchar(10),country varhar(10),province varchar(10),city varchar...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E8%A1%A8%E6%A0%BC%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" >
-            
-                <span>表格数据库操作命令</span>
-        </a>
-        <div class="abstract-content">
-            MySQL对大小写不敏感
-
-
-登陆数据库：mysql -uroot -p密码；退出数据库服务器命令：exit；
-
-
-
-1.show databases;       查看现有数据库2.create database  名字;  新建数据
-
-
-
-使用数据库（后来才能查询等）：use 数据库名字;查询数据库中所有表格：show tables；查询表格：select * from  表名;【可以用where加条件如：select * from student where 学号=19;】
-
-
-create table 表名(属性名 数据类型 [约束条件],属性名 数据类型 [约束条件],属性名 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/01/MySQL%E7%AE%80%E4%BB%8B/" >
-            
-                <span>MySQL 简介</span>
-        </a>
-        <div class="abstract-content">
-            1 MySQL是关系型数据库管理系统(存储方式是一张二维表）2 具有体积小，速度快，成本低，可移植的特点3 表是关系型数据库的基本存储单位4 表里面一行称为一个记录。即使一个对象的一组数据5 表里面的一列称为一个字段。即表中所描述的对象的一个属性6 数据完整性：
-
-实体完整性（行上实施）
-域完整性（列上实施）
-参照完整性（表上实施）
-
-7.where和having区别：
-
-where是一个约束声明,使用where来约束来自数据库的数据;where是在结果返回之前起作用的;where中不能使用聚合函数。
-
-having是一个过滤声明;在查询返回结果集以后，对查询结果进行的过滤操作;在hav...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/09/MySQL%E5%9B%9B%E7%A7%8D%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" title= "SQL四种连接查询">
+                    <div class="prevTitle">SQL四种连接查询</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -601,6 +669,24 @@ having是一个过滤声明;在查询返回结果集以后，对查询结果进�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql如何控制事务"><span class="toc-number">2.</span> <span class="toc-text">mysql如何控制事务</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -944,6 +1030,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
