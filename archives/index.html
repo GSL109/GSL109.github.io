@@ -351,8 +351,24 @@
                 <span>QT第一个项目：视频播放器</span>
         </a>
         <div class="abstract-content">
-            
+            介绍
+1 设置为两个窗口，一个为遥控器QWidget，一个为播放器窗口QVideoWidget
+2 通过遥控器发送各种信号操作播放器的播放/暂停，全屏，截屏等操作
+3 本播放器支持播放，暂停，全屏，截屏，倍速，调节音量，是否静音，调节视频进度等功能
 
+代码部分contral.h
+#ifndef CONTRAL_H
+#define CONTRAL_H
+#define MAX 100//进度条最大值
+#include 
+#include 
+#include 
+#include 
+#include 
+namespace Ui {
+class contral;
+}
+class contral :...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
