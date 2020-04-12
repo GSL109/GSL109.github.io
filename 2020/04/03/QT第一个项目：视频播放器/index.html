@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">469</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">330</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,76 +396,27 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
-<p>1 设置为两个窗口，一个为遥控器QWidget，一个为播放器窗口QVideoWidget</p>
-<p>2 通过遥控器发送各种信号操作播放器的播放/暂停，全屏，截屏等操作</p>
-<p>3 本播放器支持播放，暂停，全屏，截屏，倍速，调节音量，是否静音，调节视频进度等功能</p>
+<p>1.设置为两个窗口，一个为遥控器QWidget，一个为播放器窗口QVideoWidget</p>
+<p>2.通过遥控器发送各种信号操作播放器的播放/暂停，全屏，截屏等操作</p>
+<p>3.本播放器支持播放，暂停，全屏，截屏，倍速，调节音量，是否静音，调节视频进度等功能</p>
 </blockquote>
-<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><h3 id="contral-h"><a href="#contral-h" class="headerlink" title="contral.h"></a>contral.h</h3><blockquote>
-<p>#ifndef CONTRAL_H</p>
-<p>#define CONTRAL_H</p>
-<p>#define MAX 100//进度条最大值</p>
-<p>#include <QWidget></QWidget></p>
-<p>#include <QStringList></QStringList></p>
-<p>#include <QPaintEvent></QPaintEvent></p>
-<p>#include <QMouseEvent></QMouseEvent></p>
-<p>#include <QPainter></QPainter></p>
-<p>namespace Ui {</p>
-<p>class contral;</p>
-<p>}</p>
-<p>class contral : public QWidget</p>
-<p>{<br>   Q_OBJECT</p>
-<p>public:</p>
-<p>   explicit contral(QWidget *parent = 0);</p>
-<p>   ~contral();</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><blockquote>
+<p>1.主窗口和副窗口的通信使用信号与槽</p>
+<p>2.副窗口（指遥控器）没有边框，要重写鼠标事件函数实现移动</p>
+</blockquote>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><blockquote>
+<p>1.想实现主窗口有开场动画gif，但是在ui上直接拉进主窗口一个label，即使movie-&gt;stop,视频中会时不时闪现出这个动画停止时候的画面，影响观影</p>
+</blockquote>
+<p>解决：不从ui上拉进主窗口一个label，而是从代码部分直接创建一个label对象</p>
+<p>QLabel label = new QLabel (this)</p>
+<p>实现水平布局，然后在第一次播放视频时，直接销毁这个对象</p>
+<p>delete label</p>
 <blockquote>
+<p>2.计时器start之后总是会出现错误。调试发现程序总是异常退出。</p>
 </blockquote>
-<p>private:</p>
-<p>   Ui::contral *ui;</p>
-<p>   QPoint p;//左键按下时窗口内坐标</p>
-<p>signals:</p>
-<p>   void OpenFilePress();//打开文键按钮按下信号</p>
-<p>   void PlayOrPausePress();//播放或者暂停按钮按下信号</p>
-<p>   void FullScreenPress();//全屏按钮按下信号</p>
-<p>   void CutPress();//截图按钮按下信号</p>
-<p>   void SliderValue(qint64 Presstime);//进度条的值改变信号</p>
-<p>   void SliderReleased();//进度条改变确定松开了鼠标按键信号</p>
-<p>   void SpinBoxValue(int volume);//spinbox的数值改变发送这个信号</p>
-<p>   void RedioCheck(bool check);//rediobutton按下发送这个信号</p>
-<p>   void ComboBoxCheck(int index);//ComboBox的值改变</p>
-<p>private slots:</p>
-<p>   //打开视频文件响应函数</p>
-<p>   void on_pushButtonFile_clicked();</p>
-<p>   //暂停或者播放是同一个按钮响应函数</p>
-<p>   void on_pushButtonPlayOrPause_clicked();</p>
-<p>   //全屏响应函数</p>
-<p>   void on_pushButtonFullScreen_clicked();</p>
-<p>   //截屏响应函数</p>
-<p>   void on_pushButtonCut_clicked();</p>
-<p>   //拉动进度条移动和释放响应函数</p>
-<p>   void on_horizontalSlider_sliderMoved(int position);</p>
-<p>   void on_horizontalSlider_sliderReleased();</p>
-<p>   //spinBox的值改变响应函数</p>
-<p>   void on_spinBox_valueChanged(int arg1);</p>
-<p>   //radioButton是否点击响应函数</p>
-<p>   void on_radioButton_clicked(bool checked);</p>
-<p>   //调节倍速响应函数</p>
-<p>   void on_comboBox_currentIndexChanged(int index);</p>
-<p>public slots:</p>
-<p>   //视频播放进度设置进度条</p>
-<p>   void Slider(qint64 time);</p>
-<p>   //播放或者暂停的的按钮样式</p>
-<p>   void PlayOrPauseStyle(bool play);</p>
-<p>   //打开文件之后响应</p>
-<p>  void AfterOpenFile();</p>
-<p>protected:</p>
-</blockquote>
-<blockquote>
-<p>   void paintEvent(QPaintEvent *event);//重写绘图事件，画背景图</p>
-<p>   void mousePressEvent(QMouseEvent *event);//重写鼠标按下事件，获取左键按&gt;下坐标</p>
-<p>   void mouseMoveEvent(QMouseEvent *event);//重写鼠标移动事件，使得左键按下&gt;移动</p>
-<p>};</p>
-<p>#endif // CONTRAL_H</p>
-</blockquote>
+<p>解决：触发timeout的时间不能太短，当触发事件的时间间隔小于事件执行时间，就会程序异常</p>
+<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><p><a href="https://pan.baidu.com/s/1Kxp9J2N5GRvqJqXr01uweA" target="_blank" rel="noopener">项目文件</a></p>
+<p>提取码：w8wd</p>
 
     </article>
     <!-- license  -->
@@ -587,7 +538,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码部分"><span class="toc-number">2.</span> <span class="toc-text">代码部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#contral-h"><span class="toc-number">2.1.</span> <span class="toc-text">contral.h</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到的问题"><span class="toc-number">3.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码部分"><span class="toc-number">4.</span> <span class="toc-text">代码部分</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
